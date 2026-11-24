@@ -1,0 +1,4451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>La Vidriera</title>
+
+  <style>
+
+    body {
+    margin:0;
+    padding:20px;
+    font-family:Arial;
+    text-align:center;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    button {
+      padding: 12px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    input, select {
+      width: 100%;
+      max-width: 350px;
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+
+    h3 {
+      color: green;
+      margin-top: 20px;
+    }
+
+    #tipoVidrio{
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    text-align: center;
+    text-align-last: center;
+}
+
+#tipoVidrio option{
+    text-align: center;
+}
+    @media screen and (max-width: 768px) {
+
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 15px;
+    margin: 4px 0;
+  }
+
+  input,
+  select {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  #resultado {
+    font-size: 22px;
+    word-wrap: break-word;
+  }
+}
+
+/* Splash */
+
+#splash-screen{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:white;
+
+display:flex;
+
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999999;
+
+transition:opacity .6s ease;
+
+}
+
+.splash-logo{
+
+width:140px;
+
+height:140px;
+
+margin-bottom:20px;
+
+}
+
+#splash-screen h1{
+
+color: #08253a;
+
+font-size:42px;
+
+margin:5px;
+
+font-family:Arial;
+
+}
+
+#splash-screen h3{
+
+color:#2196F3;
+
+margin:5px;
+
+font-weight:normal;
+
+}
+
+.loader{
+
+width:45px;
+
+height:45px;
+
+border:5px solid #ddd;
+
+border-top:5px solid #003B8E;
+
+border-radius:50%;
+
+margin-top:25px;
+
+animation:gira 1s linear infinite;
+
+}
+
+@keyframes gira{
+
+0%{transform:rotate(0deg);}
+
+100%{transform:rotate(360deg);}
+
+}
+
+.logo-menu{
+    text-align:center;
+    margin:15px 0;
+}
+
+.logo-menu img{
+    width:90px;
+    height:90px;
+}
+
+.contacto-menu{
+    margin-top:20px;
+    padding-top:15px;
+    border-top:1px solid #ddd;
+    text-align:center;
+    font-size:14px;
+}
+
+.contacto-menu a{
+    color:#003B8E;
+    text-decoration:none;
+    display:block;
+    margin:5px 0;
+}
+
+.contacto-menu a:hover{
+    text-decoration:underline;
+}
+
+
+.firma-desarrollador strong {
+    color: #777;
+    font-weight: 600;
+}
+
+/* =================================
+   LA VIDRIERA - DISEÑO INDUSTRIAL
+================================= */
+
+:root {
+    --color-principal: #172A3A;
+    --color-secundario: #0d2b44;
+    --color-acento: #2584C7;
+    --color-fondo: #EEF1F4;
+    --color-blanco: #FFFFFF;
+}
+
+body {
+    background-color: var(--color-fondo);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 90px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* CONTENEDORES */
+.container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* BOTONES */
+button {
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* CAMPOS */
+input, select {
+    box-sizing: border-box;
+    border-radius: 8px;
+    min-height: 44px;
+}
+
+/* ADAPTACIÓN MÓVIL */
+@media (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    input, select {
+        width: 100%;
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    button {
+        min-height: 46px;
+        padding: 10px 16px;
+    }
+}
+
+
+/* BARRA DE NAVEGACIÓN INFERIOR */
+
+.barra-inferior {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 68px;
+    background: #172A3A;
+    border-top: 3px solid #2584C7;
+    z-index: 9999;
+    box-shadow: 0 -3px 12px rgba(0,0,0,0.15);
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: #B8C4CE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex: 1;
+    height: 100%;
+}
+
+.nav-item span {
+    font-size: 23px;
+}
+
+.nav-item small {
+    font-size: 11px;
+}
+
+.nav-item.activo {
+    color: #FFFFFF;
+    border-top: 3px solid #2584C7;
+}
+
+/* FIRMA DEL DESARROLLADOR */
+.firma-desarrollador {
+    margin-top: 25px;
+    padding: 12px 5px;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+    line-height: 1.6;
+    border-top: 1px solid #eeeeee;
+}
+
+
+/* =================================
+   TARJETAS DEL HISTORIAL
+================================= */
+
+.tarjeta-historial {
+    background: #FFFFFF;
+    border: 1px solid #D8E0E7;
+    border-left: 5px solid #2584C7;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+.tarjeta-historial h3 {
+    color: #172A3A;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.tarjeta-historial p {
+    color: #667785;
+    font-size: 13px;
+    margin: 6px 0;
+}
+
+.tarjeta-historial .total-historial {
+    display: block;
+    color: #2584C7;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 14px 0;
+}
+
+.botones-historial {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.botones-historial button {
+    flex: 1;
+    min-width: 120px;
+    border: none;
+    padding: 11px;
+    color: #FFFFFF;
+    background: #2584C7;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.botones-historial button:last-child {
+    background: #35424D;
+}
+
+
+/* =================================
+   DETALLE DE COTIZACIÓN
+================================= */
+
+#seccionDetalleCotizacion {
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+#seccionDetalleCotizacion h2 {
+    color: #172A3A;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#contenidoDetalleCotizacion {
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #D8E0E7;
+    border-top: 5px solid #2584C7;
+    padding: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: #35424D;
+    overflow-wrap: anywhere;
+}
+
+#seccionDetalleCotizacion button {
+    width: 100%;
+    margin-top: 18px;
+    background: #172A3A;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px;
+    border-radius: 9px;
+}
+
+/* ENCABEZADO DE FACTURA */
+
+.factura-encabezado {
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D8E0E7;
+}
+
+.factura-encabezado h2 {
+    color: #2584C7 !important;
+    font-size: 30px;
+    margin: 0 0 2px 0;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.factura-encabezado h3 {
+    color: #172A3A;
+    font-size: 20px;
+    margin: 5px 0 2px 0;
+    line-height: 1.1;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.factura-encabezado p {
+    margin: 2px 0;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #667785;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* LISTADO DE ARTÍCULOS */
+
+.factura-articulos {
+    margin-top: 10px;
+}
+
+.factura-articulos > h3 {
+    color: #172A3A;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.factura-articulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid #E1E6EB;
+    line-height: 1.3;
+}
+
+.factura-articulo strong {
+    flex: 1;
+    color: #35424D;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.factura-articulo span {
+    color: #172A3A;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* TOTAL GENERAL */
+
+.factura-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+    padding: 6px;
+    background: #172A3A;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.factura-total strong {
+    color: #FFFFFF;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+/* =================================
+   NOTIFICACIONES LA VIDRIERA
+================================= */
+
+.modal-notificacion {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 30, 0.65);
+    z-index: 20000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contenido-notificacion {
+    width: 100%;
+    max-width: 340px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    border-top: 5px solid #2584C7;
+    box-sizing: border-box;
+}
+
+.icono-notificacion {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #E5F2FC;
+    color: #2584C7;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-notificacion h3 {
+    color: #172A3A;
+    font-size: 19px;
+    margin: 8px 0;
+}
+
+.contenido-notificacion p {
+    color: #35424D;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 12px 0 20px;
+}
+
+#botonesNotificacion {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#botonesNotificacion button {
+    flex: 1;
+    border: none;
+    background: #2584C7;
+    color: #FFFFFF;
+    border-radius: 9px;
+    padding: 13px;
+    font-weight: bold;
+}
+
+  </style>
+
+  <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#2c3e50">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="apple-mobile-web-app-title" content="La Vidriera">
+
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="format-detection" content="telephone=no">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+</head>
+
+<body>
+
+<!-- Splash Screen -->
+<div id="splash-screen">
+
+    <img src="icons/icon-512.png" class="splash-logo">
+
+    <h1>La Vidriera</h1>
+
+    <h3>Cotizador Profesional</h3>
+
+    <p>Versión 3.5</p>
+
+    <div class="loader">
+
+</div>
+
+    <!-- LOGO -->
+    <div class="logo-menu">
+        <img src="icons/icon-192.png" alt="La Vidriera">
+    </div>
+
+  </div>  
+
+
+<!-- PANTALLA DE INICIO -->
+<div id="inicio" class="pantalla-inicio" style="display:block;">
+
+    <div class="bienvenida-logo">
+        <img src="icons/icon-192.png" alt="La Vidriera">
+    </div>
+
+    <h1>LA VIDRIERA</h1><br>
+
+    <h2>Sistema de Cotización</h2><br>
+
+    <p>
+        ¡Saludos!<br><br>
+        Gestiona tus trabajos de vidrio y aluminio
+        de manera sencilla y organizada.
+    </p><br><br>
+
+    <button onclick="mostrarSeccion('cotizar')">
+        INICIAR COTIZACIÓN
+    </button>
+
+  <div class="contacto-menu">
+
+    <p><strong>Consultas</strong></p>
+
+    <a href="tel:+50660174027">📞 Oficina: 6017-4027</a><br>
+
+    <a href="tel:+50663791874">📞 Propietario: 6379-1874</a>
+
+</div>
+   
+</div>
+
+
+<!-- 🔹 MENÚ PRINCIPAL -->
+<div id="menu" style="display:none;">
+  <h1>La Vidriera</h1>
+  <button onclick="abrir5020()">5020</button><br>
+  <button onclick="abrir8025()">8025</button><br>
+  <button onclick="abrirCEDAZOS()">CEDAZOS</button><br>
+  <button onclick="abrirVENTILAS()">VENTILAS</button><br>
+  <button onclick="abrirVIDRIOSFIJOS()">VIDRIOS FIJOS</button><br>
+  <button onclick="abrirPUERTADEBANO()">PUERTA DE BANO</button><br>
+  <button onclick="abrirPUERTALIVIANA()">PUERTA LIVIANA</button><br>
+  <button onclick="abrirPORTONPESADO()">PORTON PESADO</button><br>
+  <button onclick="abrirESPEJOS()">ESPEJOS</button><br>
+  <button onclick="abrirPANEL()">PANEL</button><br>
+  <button onclick="abrirCURVAS()">CURVAS</button><br>
+  <button onclick="abrirCOTIZACIONLIBRE()">COTIZACION LIBRE</button>
+</div>
+
+<!-- 🔹 SUBMENÚ 5020 -->
+<div id="submenu5020" style="display:none;">
+  <h2>Seleccionar tipo 5020</h2>
+  <button onclick="seleccionarTipo('FM / MF')">FM / MF</button><br>
+  <button onclick="seleccionarTipo('MM')">MM</button><br>
+  <button onclick="seleccionarTipo('FMF')">FMF</button><br>
+  <button onclick="seleccionarTipo('MFM')">MFM</button><br>
+  <button onclick="seleccionarTipo('FMMF')">FMMF</button><br>
+  <button onclick="seleccionarTipo('MTTM')">MTTM</button><br>
+  <button onclick="seleccionarTipo('FM / MF con Cedazo')">FM / MF con Cedazo</button><br>
+  <button onclick="seleccionarTipo('FMF con Cedazo')">FMF con Cedazo</button><br>
+  <button onclick="seleccionarTipo('ABATIBLE')">ABATIBLE</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ 8025 -->
+<div id="submenu8025" style="display:none;">
+  <h2>Seleccionar tipo 8025</h2>
+  <button onclick="seleccionarTipo('FM / MF')">FM / MF</button><br>
+  <button onclick="seleccionarTipo('MM')">MM</button><br>
+  <button onclick="seleccionarTipo('TRES VIAS')">TRES VIAS</button><br>
+  <button onclick="seleccionarTipo('FMF')">FMF</button><br>
+  <button onclick="seleccionarTipo('FMMF')">FMMF</button><br>
+  <button onclick="seleccionarTipo('MMMM')">MMMM</button><br>
+  <button onclick="seleccionarTipo('FM / MF con CEDAZO')">FM / MF con CEDAZO</button><br>
+  <button onclick="seleccionarTipo('FMF con CEDAZO')">FMF con CEDAZO</button><br>
+  <button onclick="seleccionarTipo('FMMF con CEDAZO')">FMMF con CEDAZO</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ CEDAZOS -->
+<div id="submenuCEDAZOS" style="display:none;">
+  <h2>Seleccionar tipo CEDAZOS</h2>
+  <button onclick="seleccionarTipo('CEDAZO 1')">CEDAZO 1</button><br>
+  <button onclick="seleccionarTipo('CEDAZO 1/2')">CEDAZO 1/2</button><br>
+  <button onclick="seleccionarTipo('CEDAZO MONORIEL')">CEDAZO MONORIEL</button><br>
+  <button onclick="seleccionarTipo('CEDAZO MONORIEL DOBLE')">CEDAZO MONORIEL DOBLE</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ VENTILAS -->
+<div id="submenuVENTILAS" style="display:none;">
+  <h2>Seleccionar tipo VENTILAS</h2>
+  <button onclick="seleccionarTipo('VENTILA SIMPLE')">VENTILA SIMPLE</button><br>
+  <button onclick="seleccionarTipo('VENTILA DOBLE')">VENTILA DOBLE</button><br>
+  <button onclick="seleccionarTipo('VENTILA TRIPLE')">VENTILA TRIPLE</button><br>
+  <button onclick="seleccionarTipo('VENTILA CUADRUPLE')">VENTILA CUADRUPLE</button><br>
+  <button onclick="seleccionarTipo('VENTILA CON VIDRIO FIJO HORIZONTAL')">VENTILA CON VIDRIO FIJO HORIZONTAL</button><br>
+  <button onclick="seleccionarTipo('VENTILA CON VIDRIO FIJO VERTICAL')">VENTILA CON VIDRIO FIJO VERTICAL</button><br>
+  <button onclick="seleccionarTipo('VENTILA DOBLE VERTICAL')">VENTILA DOBLE VERTICAL</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ VIDRIOS FIJOS -->
+<div id="submenuVIDRIOSFIJOS" style="display:none;">
+  <h2>Seleccionar tipo VIDRIO FIJO</h2>
+  <button onclick="seleccionarTipo('VIDRIO FIJO')">VIDRIO FIJO</button><br>
+  <button onclick="seleccionarTipo('VIDRIO FIJO CON DIVISION VERTICAL')">VIDRIO FIJO CON DIVISION VERTICAL</button><br>
+  <button onclick="seleccionarTipo('VIDRIO FIJO CON DIVISION HORIZONTAL')">VIDRIO FIJO CON DIVISION HORIZONTAL</button><br>
+    <button onclick="seleccionarTipo('VIDRIO FIJO CON TUBO 1X2 COMO CARGADOR')">VIDRIO FIJO CON TUBO 1X2 COMO CARGADOR</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ PUERTA DE BAÑO -->
+<div id="submenuPUERTADEBANO" style="display:none;">
+  <h2>Seleccionar tipo PUERTA DE BAÑO</h2>
+  <button onclick="seleccionarTipo('PUERTA DE BANO NORMAL')">PUERTA DE BANO NORMAL</button><br>
+  <button onclick="seleccionarTipo('PUERTA DE BANO CON PANEL')">PUERTA DE BANO CON PANEL</button><br>
+  <button onclick="seleccionarTipo('PUERTA DE BANO EN ESCUADRA')">PUERTA DE BANO EN ESCUADRA</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ PUERTA LIVIANA -->
+<div id="submenuPUERTALIVIANA" style="display:none;">
+  <h2>Seleccionar tipo PUERTA LIVIANA</h2>
+  <button onclick="seleccionarTipo('CEJA CORRIDA')">CEJA CORRIDA</button><br>
+  <button onclick="seleccionarTipo('CEJA CORRIDA CON DIVISION')">CEJA CORRIDA CON DIVISION</button><br>
+  <button onclick="seleccionarTipo('MARCO 8040')">MARCO 8040</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ PORTÓN PESADO -->
+<div id="submenuPORTONPESADO" style="display:none;">
+  <h2>Seleccionar tipo PORTON PESADO</h2>
+  <button onclick="seleccionarTipo('PORTON PESADO 8040')">PORTON PESADO MARCO 8040</button><br><br>
+  <button onclick="seleccionarTipo('PORTON PESADO CEJA CORRIDA')">PORTON PESADO CEJA CORRIDA</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ ESPEJOS -->
+<div id="submenuESPEJOS" style="display:none;">
+  <h2>Seleccionar tipo ESPEJOS</h2>
+  <button onclick="seleccionarTipo('ESPEJO CON MARCO')">ESPEJO CON MARCO</button><br>
+  <button onclick="seleccionarTipo('ESPEJO SIN MARCO')">ESPEJO SIN MARCO</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ PANEL -->
+<div id="submenuPANEL" style="display:none;">
+  <h2>Seleccionar tipo PANEL</h2>
+  <button onclick="seleccionarTipo('PANEL MATERIAL PB')">PANEL MATERIAL PB</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ CURVAS -->
+<div id="submenuCURVAS" style="display:none;">
+  <h2>Seleccionar tipo CURVA</h2>
+  <button onclick="seleccionarTipo('CURVA NORMAL')">CURVA NORMAL</button><br>
+  <button onclick="seleccionarTipo('CURVA CODO')">CURVA CODO</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 SUBMENÚ COTIZADOR LIBRE -->
+<div id="submenuCOTIZACIONLIBRE" style="display:none;">
+  <h2>Seleccionar tipo COTIZACION LIBRE</h2>
+  <button onclick="seleccionarTipo('LAMINA DE VIDRIO')">LAMINA DE VIDRIO</button><br>
+  <button onclick="seleccionarTipo('ROLLO DE CEDAZO')">ROLLO DE CEDAZO</button><br>
+  <button onclick="seleccionarTipo('PERFILES DE ALUMINIO')">PERFILES DE ALUMINIO</button><br>
+  <button onclick="seleccionarTipo('ACCESORIOS')">ACCESORIOS</button><br>
+  <button onclick="seleccionarTipo('EMPAQUE')">EMPAQUE</button><br><br>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<!-- 🔹 COTIZADOR -->
+<div id="cotizador" style="display:none;">
+  <h2 id="tituloCotizador"></h2>
+
+  <div id="campoAncho">
+    <label>Ancho (cm):</label><br>
+    <input type="number" id="ancho"><br><br>
+  </div>
+
+<div id="campoAlto">
+  <label>Alto (cm):</label><br>
+  <input type="number" id="alto"><br><br>
+  </div>
+
+
+<div id="campoVidrio">
+<label>Tipo de Vidrio:</label><br>
+<select id="tipoVidrio"><br>
+  <option value="" selected disabled>SELECCIONAR TIPO DE VIDRIO</option>
+  <option value="VIDRIO 4mm BRONCE">VIDRIO 4mm BRONCE</option>
+  <option value="VIDRIO 4mm CLARO">VIDRIO 4mm CLARO</option>
+  <option value="VIDRIO 4mm GRIS">VIDRIO 4mm GRIS</option>
+  <option value="VIDRIO 5mm BRONCE">VIDRIO 5mm BRONCE</option>
+  <option value="VIDRIO 5mm CLARO">VIDRIO 5mm CLARO</option>
+  <option value="VIDRIO 5mm GRIS">VIDRIO 5mm GRIS</option>
+  <option value="ALUMINIO COMPUESTO 4mm NEGRO">ALUMINIO COMPUESTO 4mm NEGRO</option>
+  <option value="VIDRIO 5mm ARENADO BRONCE">VIDRIO 5mm ARENADO BRONCE</option>
+  <option value="VIDRIO 5mm NIEVE BRONCE">VIDRIO 5mm NIEVE BRONCE</option>
+  <option value="ACRILICO BRONCE (CAÑAVERAL/ESMERILADO)">ACRILICO BRONCE (CAÑAVERAL/ESMERILADO)</option>
+  <option value="LAMINA DE ESPEJO">LAMINA DE ESPEJO</option>
+</select><br><br>
+</div>
+
+<!-- PERFIL PARA VIDRIOS FIJOS -->
+<div id="campoPerfilFijo" style="display:none;">
+
+    <label>Perfil de aluminio:</label><br>
+
+    <select id="perfilFijo">
+        <option value="" selected disabled>SELECCIONAR PERFIL</option>
+        <option value="13.52">X12</option>
+        <option value="23.92">TUBO 1X2</option>
+        <option value="43.73">TUBO 1 3/4 X 3</option>
+        <option value="52.80">TUBO 1 3/4 X 4</option>
+    </select>
+
+    <br><br>
+</div>
+
+<!-- X12: disponible para todas las opciones del sistema 5020 -->
+<div id="campoX12" style="display:none; margin:5px auto 20px;">
+  <label style="display:block; font-weight:bold; margin-bottom:8px;">X12</label>
+  <label style="display:inline-flex; align-items:center; gap:6px; margin:0 12px;">
+    <input type="radio" name="opcionX12" id="x12No" value="no" checked style="width:auto; margin:0;"> NO APLICA
+  </label>
+  <label style="display:inline-flex; align-items:center; gap:6px; margin:0 12px;">
+    <input type="radio" name="opcionX12" id="x12Si" value="si" style="width:auto; margin:0;"> APLICA
+  </label>
+</div>
+
+<div id="campoPERFILES" style="display:none;">
+<label>Perfil de aluminio:</label><br>
+<input
+list="listaPerfiles"
+id="perfilAluminio"
+placeholder="Escriba o seleccione un perfil">
+
+<datalist id="listaPerfiles">
+<option value="Cargador 5020 bronce">
+<option value="Umbral 5020 bronce">
+<option value="Jamba 5020 bronce">
+<option value="Vertical llavín 5020 bronce">
+<option value="Vertical centro 5020 bronce">
+<option value="Superior 5020 bronce">
+<option value="Inferior 5020 bronce">
+<option value="Adaptador 5020 bronce">
+<option value="Cargador 5020 negro">
+<option value="Umbral 5020 negro">
+<option value="Jamba 5020 negro">
+<option value="Vertical llavín 5020 negro">
+<option value="Vertical centro 5020 negro">
+<option value="Superior 5020 negro">
+<option value="Inferior 5020 negro">
+<option value="Adaptador 5020 negro">
+<option value="Cargador 5020 natural">
+<option value="Umbral 5020 natural">
+<option value="Jamba 5020 natural">
+<option value="Vertical llavín 5020 natural">
+<option value="Vertical centro 5020 natural">
+<option value="Superior 5020 natural">
+<option value="Inferior 5020 natural">
+<option value="Adaptador 5020 natural">
+<option value="Lateral PB">
+<option value="Jamba PB">
+<option value="Superior PB">
+<option value="Inferior PB">
+<option value="Pañera PB">
+<option value="Soporte de pañera PB">
+<option value="Cargador PB">
+<option value="Umbral PB">
+<option value="Moldura cedazo 1/2 bronce">
+<option value="Cenefa bronce">
+<option value="Riel portón pesado bronce">
+<option value="Tubo 1x2 - 2 cejas bronce">
+<option value="X12 bronce">
+<option value="Tubo 1x2 - 1 ceja bronce">
+<option value="Moldura cedazo 1 bronce">
+<option value="Venilla 1/2 x 1/2 bronce">
+<option value="Chapa X11 bronce">
+<option value="Moldura francesa bronce">
+<option value="Tubo aleta descentrada bronce">
+<option value="Tubo 2x2 liso bronce">
+<option value="Tubo 1 3/4 x 3 liso bronce">
+<option value="Tubo 1 3/4 x 3 - 1 ceja bronce">
+<option value="Tubo 1 3/4 x 3 - 2 cejas bronce">
+<option value="Angular 1x1 bronce">
+<option value="Tubo 1x1 liso bronce">
+<option value="Tubo 1x2 liso bronce">
+<option value="Angular 1/2 x 3/8 bronce">
+<option value="Tubo 1 3/4 x 4 - 1 ceja bronce">
+<option value="Tubo 1 3/4 x 4 - 2 cejas bronce">
+<option value="Tubo 1 3/4 x 4 liso bronce">
+<option value="Marco 8040">  
+<option value="Envidriador Urna natural">
+<option value="Tubo 1x2 - 2 cejas natural">
+<option value="Tubo 1x2 - 1 ceja natural">
+<option value="X12 natural">
+<option value="Tubo 1 3/4 x 3 - 1 ceja natural">
+<option value="Tubo 1 3/4 x 3 - 2 cejas natural">
+<option value="Tubo 1 3/4 x 3 liso natural">
+<option value="Venilla 1/2 x 1/2 natural">
+<option value="Tubo 1x1 liso natural">
+<option value="Tubo 2x2 liso natural">
+<option value="Angular 1/2 x 3/8 natural">
+<option value="Angular 1x1 natural">
+<option value="Moldura francesa natural">
+<option value="Tubo 1 3/4 x 4 - 1 ceja natural">
+<option value="Tubo 1 3/4 x 4 - 2 cejas natural">
+<option value="Tubo 1 3/4 x 4 liso natural">
+<option value="Tubo aleta descentrada natural">
+<option value="Chapa X11 natural">
+<option value="Cenefa natural">
+<option value="Riel portón pesado natural">
+<option value="Moldura cedazo 1 natural">
+<option value="Moldura cedazo 1/2 natural">
+<option value="Marco 8040 natural">
+<option value="Moldura francesa negro">
+<option value="Tubo 1x2 - 2 cejas negro">
+<option value="Tubo 1x2 - 1 ceja negro">
+<option value="X12 negro">
+<option value="Venilla 1/2 x 1/2 negro">
+<option value="Moldura cedazo 1 negro">
+<option value="Moldura cedazo 1/2 negro">
+<option value="Tubo 1x1 liso negro">
+<option value="Tubo 1x2 liso negro">
+<option value="Tubo 2x2 liso negro">
+<option value="Tubo 1 3/4 x 3 - 1 ceja negro">
+<option value="Tubo 1 3/4 x 3 - 2 cejas negro">
+<option value="Tubo 1 3/4 x 3 liso negro">
+<option value="Angular 1/2 x 3/8 negro">
+<option value="Angular 1x1 negro">
+<option value="Tubo 1 3/4 x 4 - 1 ceja negro">
+<option value="Tubo 1 3/4 x 4 - 2 cejas negro">
+<option value="Tubo 1 3/4 x 4 liso negro">
+<option value="Tubo aleta descentrada negro">
+<option value="Cenefa negro">
+<option value="Riel pórton pesado negro">
+<option value="Marco 8040 negro">
+<option value="Cargador 2 vías 8025 bronce">
+<option value="Cargador 3 vías 8025 bronce">
+<option value="Umbral 2 vías 8025 bronce">
+<option value="Umbral 3 vías 8025 bronce">
+<option value="Jamba 2 vías 8025 bronce">
+<option value="Jamba 3 vías 8025 bronce">
+<option value="Vertical llavín 8025 bronce">
+<option value="Vertical centro 8025 bronce">
+<option value="Piso alfombra 8025 bronce">
+<option value="Superior 8025 bronce">
+<option value="Inferior 8025 bronce">
+<option value="Adaptador 8025 bronce">
+<option value="Cargador 2 vías 8025 negro">
+<option value="Cargador 3 vías 8025 negro">
+<option value="Umbral 2 vías 8025 negro">
+<option value="Umbral 3 vías 8025 negro">
+<option value="Jamba 2 vías 8025 negro">
+<option value="Jamba 3 vías 8025 negro">
+<option value="Vertical llavín 8025 negro">
+<option value="Vertical centro 8025 negro">
+<option value="Piso alfombra 8025 negro">
+<option value="Superior 8025 negro">
+<option value="Inferior 8025 negro">
+<option value="Adaptador 8025 negro">
+<option value="Contramarco Lateral/Superior 2 vías akary bronce">
+<option value="Contramarco Lateral/Superior 1 vía akary bronce">
+<option value="Contramarco Inferior 1 vía akary bronce">
+<option value="Marco cedazo corredizo akary bronce">
+<option value="Adaptador enganche akary bronce">
+<option value="Marco 8040 akary bronce">
+<option value="Adaptador akary bronce">
+<option value="Marco hoja de cedazo 6030 akary bronce">
+<option value="Adaptador enganche akary natural">
+<option value="Adaptador enganche akary negro">
+<option value="Contramarco Sup/Inf ventila">
+<option value="Contramarco divisor ventila">
+<option value="Jamba ventila">
+<option value="Marco de hoja ventila">
+<option value="Venilla ventila">
+</datalist>
+
+<br><br>
+
+<label>Cantidad (cm):</label><br>
+    <input
+        type="number"
+        id="cantidadPerfil"
+        placeholder="Ingrese la cantidad">
+
+</div>
+
+<div id="campoACC" style="display:none;">
+<label>Accesorios:</label><br>
+<input
+list="listaACC"
+id="Accesorios"
+placeholder="Escriba o seleccione un accesorio">
+
+<datalist id="listaACC">
+<option value="Rodines 5020">
+<option value="Rodín Puerta Baño">
+<option value="Escuadra cedazo 1">
+<option value="Escuadra cedazo ½">
+<option value="Rodín portón pesado">
+<option value="Rodines 8025">
+<option value="Guía 5020">
+<option value="Guía superior 8025">
+<option value="Guía inferior 8025">
+<option value="Silicón Bostik transparente">
+<option value="Escuadra 1 vía akary">
+<option value="Cerradura media luna">
+<option value="Rodín tándem">
+<option value="Escuadra universal akary">
+<option value="Rodín akary 6030">
+<option value="Bisagra bandera negra">
+<option value="Escuadra ventila plástica">
+<option value="Llavín doble manija">
+<option value="Llavín sobrepuesto">
+<option value="Cierre 5020 Negro">
+<option value="Cierre 5020 Rojo">
+<option value="Llavín Pico Lora perfil angosto">
+<option value="Llavín Akari">
+<option value="Haladera Dummy sencilla">
+<option value="Haladera Dummy doble">
+<option value="Manilla fuerte">
+<option value="Haladera larga">
+<option value="Bisagra ventila 8 pulg">
+<option value="Bisagra ventila 10 pulg">
+<option value="Bisagra ventila 12 plug">
+<option value="Bisagra ventila 16 pulg">
+<option value="Manija ventila">
+</datalist>
+
+<br><br>
+
+<label>Cantidad (unidad):</label><br>
+    <input
+        type="number"
+        id="cantidadACC"
+        placeholder="Ingrese la cantidad">
+</div>
+
+<div id="campoEMPA" style="display:none;">
+<label>EMPAQUES/FELPA:</label><br>
+<input
+list="listaEMPAQ"
+id="Empaques"
+placeholder="Escriba o seleccione un Empaque/Felpa">
+
+<datalist id="listaEMPAQ">
+<option value="Empaque U ventana corrediza">
+<option value="Empaque U multiuso">
+<option value="Empaque cedazo">
+</datalist>
+
+<br><br>
+
+<label>Cantidad (cm):</label><br>
+    <input
+        type="number"
+        id="cantidadEMPA"
+        placeholder="Ingrese la cantidad">
+</div>
+
+
+  <!-- 🔹 EXTRA MTTM -->
+  <div id="extraMTTM" style="display:none;">
+
+    <label>Ancho total ventana izquierda (cm):</label><br>
+    <input type="number" id="anchoIzq"><br><br>
+
+    <label>Ancho total ventana derecha (cm):</label><br>
+    <input type="number" id="anchoDer"><br><br>
+
+  </div>
+
+  <!-- 🔹 EXTRA VENTILA HORIZONTAL -->
+<div id="extraVentilaHorizontal" style="display:none;">
+
+  <label>Ancho total (cm):</label><br>
+  <input type="number" id="anchoTotal"><br><br>
+
+  <label>Ancho de la ventila (cm):</label><br>
+  <input type="number" id="anchoVentila"><br><br>
+
+</div>
+
+  <!-- 🔹 EXTRA VENTILA VERTICAL -->
+<div id="extraVentilaVertical" style="display:none;">
+
+  <label>Alto total (cm):</label><br>
+  <input type="number" id="altoTotal"><br><br>
+
+  <label>Alto de la ventila (cm):</label><br>
+  <input type="number" id="altoVentila"><br><br>
+
+</div>
+
+  <!-- 🔹 EXTRA PUERTA DE BAÑO CON PANEL -->
+  <div id="extraPuertaPanel" style="display:none;">
+
+    <label>Ancho Puerta de Baño (cm):</label><br>
+    <input type="number" id="anchoPB"><br><br>
+
+    <label>Ancho del Panel (cm):</label><br>
+    <input type="number" id="anchoPanel"><br><br>
+
+  </div>
+
+    <!-- 🔹 EXTRA PUERTA DE BAÑO EN ESCUADRA -->
+  <div id="extraPuertaEscuadra" style="display:none;">
+
+    <label>Ancho Puerta de Baño #1 (cm):</label><br>
+    <input type="number" id="anchoPB1"><br><br>
+
+    <label>Ancho Puerta de Baño #2 (cm):</label><br>
+    <input type="number" id="anchoPB2"><br><br>
+
+  </div>
+
+  <button onclick="calcular()">Cotizar</button><br>
+  <button onclick="agregarCarrito()">
+
+    Añadir al carrito
+</button><br>
+  <button onclick="volverSubmenu()">Volver</button>
+
+  <h3 id="resultado"></h3>
+
+
+<br>
+
+
+  </div>
+
+
+
+<div id="seccionCarrito" style="display:none;">
+<h2>Carrito de Cotización</h2>
+
+<table id="tablaCarrito" border="1" style="width:100%; border-collapse:collapse;">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+
+    <tbody id="cuerpoCarrito">
+
+    </tbody>
+</table>
+
+<h2 id="totalGeneral">
+    Total General: ₡0
+</h2>
+
+<button onclick="guardarCotizacion()">
+    Guardar Cotización
+</button>
+
+<button onclick="generarWhatsApp()">
+    Generar Cotización para WhatsApp
+</button>
+
+
+</div>
+
+<!-- HISTORIAL DE COTIZACIONES -->
+<div id="seccionHistorial" style="display:none;">
+
+    <h2>Historial de cotizaciones</h2>
+
+    <p>Consulta y administra tus cotizaciones guardadas.</p>
+
+    <div id="listaHistorial">
+
+        <p>No hay cotizaciones guardadas.</p>
+
+    </div>
+
+</div>
+
+
+<!-- DETALLE DE COTIZACIÓN -->
+<div id="seccionDetalleCotizacion" style="display:none;">
+
+    <h2>Detalle de cotización</h2>
+
+    <div id="contenidoDetalleCotizacion">
+
+    </div>
+
+    <button onclick="mostrarSeccion('historial')">
+        VOLVER AL HISTORIAL
+    </button>
+
+</div>
+
+
+<script>
+
+function mostrarSeccion(seccion) {
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+});
+
+
+    // Ocultar menú principal
+    document.getElementById("menu").style.display = "none";
+
+    // Ocultar pantalla de inicio
+document.getElementById("inicio").style.display = "none";
+
+    // Ocultar cotizador
+    document.getElementById("cotizador").style.display = "none";
+
+    // Ocultar todos los submenús
+    const submenus = [
+        "submenu5020",
+        "submenu8025",
+        "submenuCEDAZOS",
+        "submenuVENTILAS",
+        "submenuVIDRIOSFIJOS",
+        "submenuPUERTADEBANO",
+        "submenuPUERTALIVIANA",
+        "submenuPORTONPESADO",
+        "submenuESPEJOS",
+        "submenuPANEL",
+        "submenuCURVAS",
+        "submenuCOTIZACIONLIBRE"
+    ];
+
+    submenus.forEach(id => {
+        document.getElementById(id).style.display = "none";
+    });
+
+    // Ocultar carrito
+    document.getElementById("seccionCarrito").style.display = "none";
+
+// Ocultar historial
+document.getElementById("seccionHistorial").style.display = "none";
+
+// Ocultar detalle de cotización
+document.getElementById("seccionDetalleCotizacion").style.display = "none";
+
+// Mostrar sección seleccionada
+if (seccion === "inicio") {
+    document.getElementById("inicio").style.display = "block";
+}
+
+if (seccion === "cotizar") {
+    document.getElementById("menu").style.display = "block";
+}
+
+    if (seccion === "carrito") {
+        document.getElementById("seccionCarrito").style.display = "block";
+    }
+
+if (seccion === "historial") {
+    document.getElementById("seccionHistorial").style.display = "block";
+    mostrarHistorial();
+}
+
+if (seccion === "detalle") {
+    document.getElementById("seccionDetalleCotizacion").style.display = "block";
+}
+
+    // Actualizar botón activo
+    document.querySelectorAll(".nav-item").forEach(boton => {
+        boton.classList.remove("activo");
+    });
+
+    const botones = document.querySelectorAll(".nav-item");
+
+    if (seccion === "inicio") botones[0].classList.add("activo");
+    if (seccion === "cotizar") botones[1].classList.add("activo");
+    if (seccion === "carrito") botones[2].classList.add("activo");
+    if (seccion === "historial") botones[3].classList.add("activo");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const splash = document.getElementById("splash-screen");
+
+    setTimeout(function () {
+
+        splash.style.opacity = "0";
+
+        setTimeout(function () {
+
+            splash.remove();
+
+        }, 600);
+
+    }, 2000);
+
+});
+
+let sistemaActual = "";
+let tipoVentana = "";
+
+let carrito = [];
+
+/* 🔹 ABRIR 5020 */
+function abrir5020() {
+  sistemaActual = "5020";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenu5020").style.display = "block";
+}
+
+/* 🔹 ABRIR 8025 */
+function abrir8025() {
+  sistemaActual = "8025";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenu8025").style.display = "block";
+}
+
+/* 🔹 ABRIR CEDAZOS */
+function abrirCEDAZOS() {
+  sistemaActual = "CEDAZOS";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuCEDAZOS").style.display = "block";
+}
+
+/* 🔹 ABRIR VENTILAS */
+function abrirVENTILAS() {
+  sistemaActual = "VENTILAS";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuVENTILAS").style.display = "block";
+}
+
+/* 🔹 ABRIR VIDRIOS FIJOS */
+function abrirVIDRIOSFIJOS() {
+  sistemaActual = "VIDRIOS FIJOS";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuVIDRIOSFIJOS").style.display = "block";
+}
+
+/* 🔹 ABRIR PUERTAS DE BAÑO */
+function abrirPUERTADEBANO() {
+  sistemaActual = "PUERTA DE BANO";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuPUERTADEBANO").style.display = "block";
+}
+
+/* 🔹 ABRIR PUERTA LIVIANA */
+function abrirPUERTALIVIANA() {
+  sistemaActual = "PUERTA LIVIANA";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuPUERTALIVIANA").style.display = "block";
+}
+
+/* 🔹 ABRIR PORTON PESADO */
+function abrirPORTONPESADO() {
+  sistemaActual = "PORTON PESADO";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuPORTONPESADO").style.display = "block";
+}
+
+/* 🔹 ABRIR ESPEJOS */
+function abrirESPEJOS() {
+  sistemaActual = "ESPEJOS";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuESPEJOS").style.display = "block";
+}
+
+  /* 🔹 ABRIR PANEL */
+function abrirPANEL() {
+  sistemaActual = "PANEL";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuPANEL").style.display = "block";
+}
+
+  /* 🔹 ABRIR CURVAS */
+function abrirCURVAS() {
+  sistemaActual = "CURVAS";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuCURVAS").style.display = "block";
+}
+
+/* 🔹 ABRIR COTIZACIONLIBRE */
+function abrirCOTIZACIONLIBRE() {
+  sistemaActual = "COTIZACION LIBRE";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("submenuCOTIZACIONLIBRE").style.display = "block";
+}
+
+/* 🔹 SELECCIONAR TIPO */
+function seleccionarTipo(tipo) {
+  tipoVentana = tipo;
+  limpiarCampos();
+
+document.getElementById("extraMTTM").style.display = "none";
+document.getElementById("extraVentilaHorizontal").style.display = "none";
+document.getElementById("extraVentilaVertical").style.display = "none";
+document.getElementById("extraPuertaPanel").style.display = "none";
+document.getElementById("extraPuertaEscuadra").style.display = "none";
+document.getElementById("campoPERFILES").style.display = "none";
+document.getElementById("campoACC").style.display = "none";
+document.getElementById("campoEMPA").style.display = "none";
+document.getElementById("campoPerfilFijo").style.display = "none";
+document.getElementById("perfilFijo").value = "";
+document.getElementById("campoX12").style.display = "none";
+document.getElementById("x12No").checked = true;
+
+document.getElementById("campoAncho").style.display = "block";
+document.getElementById("campoAlto").style.display = "block";
+
+  document.getElementById("submenu5020").style.display = "none";
+  document.getElementById("submenu8025").style.display = "none";
+  document.getElementById("submenuCEDAZOS").style.display = "none";
+  document.getElementById("submenuVENTILAS").style.display = "none";
+  document.getElementById("submenuVIDRIOSFIJOS").style.display = "none";
+  document.getElementById("submenuPUERTADEBANO").style.display = "none";
+  document.getElementById("submenuPUERTALIVIANA").style.display = "none";
+  document.getElementById("submenuPORTONPESADO").style.display = "none";
+  document.getElementById("submenuESPEJOS").style.display = "none";
+  document.getElementById("submenuPANEL").style.display = "none";
+   document.getElementById("submenuCURVAS").style.display = "none";
+  document.getElementById("submenuCOTIZACIONLIBRE").style.display = "none";
+
+  document.getElementById("cotizador").style.display = "block";
+  document.getElementById("campoPERFILES").style.display = "none";
+
+  document.getElementById("tituloCotizador").innerText =
+    sistemaActual + " - " + tipo;
+
+  // X12 se muestra en todas las opciones del sistema 5020, excepto ABATIBLE
+  if (sistemaActual === "5020" && tipo !== "ABATIBLE") {
+    document.getElementById("campoX12").style.display = "block";
+  }
+
+  // ALTURA PREDETERMINADA PARA PUERTAS DE BAÑO
+if (sistemaActual === "PUERTA DE BANO") {
+    document.getElementById("alto").value = 180;
+}
+
+// MOSTRAR SELECTOR DE PERFIL EN VIDRIOS FIJOS
+if (
+    sistemaActual === "VIDRIOS FIJOS" &&
+    tipo !== "VIDRIO FIJO CON TUBO 1X2 COMO CARGADOR"
+) {
+    document.getElementById("campoPerfilFijo").style.display = "block";
+}
+
+  /* 🔥 SOLO MTTM */
+  if (tipo === "MTTM") {
+    document.getElementById("extraMTTM").style.display = "block";
+    document.getElementById("campoAncho").style.display = "none";
+    document.getElementById("campoAlto").style.display = "block";
+  }
+
+/* 🔥 VENTILA HORIZONTAL */
+else if (tipo === "VENTILA CON VIDRIO FIJO HORIZONTAL") {
+  document.getElementById("campoAncho").style.display = "none";
+  document.getElementById("extraVentilaHorizontal").style.display = "block";
+  document.getElementById("campoAlto").style.display = "block";
+}
+
+/* 🔥 VENTILA VERTICAL */
+else if (tipo === "VENTILA CON VIDRIO FIJO VERTICAL") {
+  document.getElementById("campoAncho").style.display = "block";
+  document.getElementById("extraVentilaVertical").style.display = "block";
+  document.getElementById("campoAlto").style.display = "none";
+}
+
+/* 🔥 PUERTA DE BAÑO CON PANEL */
+else if (tipo === "PUERTA DE BANO CON PANEL") {
+  document.getElementById("campoAncho").style.display = "none";
+  document.getElementById("campoAlto").style.display = "block"; 
+  document.getElementById("extraPuertaPanel").style.display = "block"; 
+}
+
+/* 🔥 PUERTA DE BAÑO EN ESCUADRA */
+else if (tipo === "PUERTA DE BANO EN ESCUADRA") {
+  document.getElementById("campoAncho").style.display = "none";
+  document.getElementById("campoAlto").style.display = "block"; 
+  document.getElementById("extraPuertaEscuadra").style.display = "block"; 
+}
+
+else if (tipo === "PERFILES DE ALUMINIO") {
+
+    document.getElementById("campoPERFILES").style.display = "block";
+
+    document.getElementById("campoAncho").style.display = "none";
+    document.getElementById("campoAlto").style.display = "none";
+
+    document.getElementById("campoVidrio").style.display = "none";
+
+    document.getElementById("extraMTTM").style.display = "none";
+    document.getElementById("extraVentilaHorizontal").style.display = "none";
+    document.getElementById("extraVentilaVertical").style.display = "none";
+    document.getElementById("extraPuertaPanel").style.display = "none";
+    document.getElementById("extraPuertaEscuadra").style.display = "none";
+
+    return;
+}
+
+else if (tipoVentana === "ACCESORIOS") {
+
+    document.getElementById("campoACC").style.display = "block";
+
+    document.getElementById("campoAncho").style.display = "none";
+    document.getElementById("campoAlto").style.display = "none";
+
+    document.getElementById("campoVidrio").style.display = "none";
+
+    document.getElementById("extraMTTM").style.display = "none";
+    document.getElementById("extraVentilaHorizontal").style.display = "none";
+    document.getElementById("extraVentilaVertical").style.display = "none";
+    document.getElementById("extraPuertaPanel").style.display = "none";
+    document.getElementById("extraPuertaEscuadra").style.display = "none";
+
+}
+
+else if (tipoVentana === "EMPAQUE") {
+
+    document.getElementById("campoEMPA").style.display = "block";
+
+    document.getElementById("campoAncho").style.display = "none";
+    document.getElementById("campoAlto").style.display = "none";
+
+    document.getElementById("campoVidrio").style.display = "none";
+
+    document.getElementById("extraMTTM").style.display = "none";
+    document.getElementById("extraVentilaHorizontal").style.display = "none";
+    document.getElementById("extraVentilaVertical").style.display = "none";
+    document.getElementById("extraPuertaPanel").style.display = "none";
+    document.getElementById("extraPuertaEscuadra").style.display = "none";
+}
+  /* MOSTRAR U OCULTAR VIDRIO */
+
+if (
+    tipo === "CEDAZO 1" ||
+    tipo === "CEDAZO 1/2" ||
+    tipo === "CEDAZO MONORIEL" ||
+    tipo === "CEDAZO MONORIEL DOBLE" ||
+    tipo === "ROLLO DE CEDAZO" ||
+    tipo === "PERFILES DE ALUMINIO" ||
+    tipo === "ACCESORIOS" ||
+    tipo === "EMPAQUE"
+
+) {
+
+    document.getElementById("campoVidrio").style.display = "none";
+
+} else {
+
+    document.getElementById("campoVidrio").style.display = "block";
+
+}
+
+// REGRESAR AL INICIO DE LA COTIZACIÓN
+window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+
+}
+
+/* 🔹 VOLVER MENÚ */
+function volverMenu() {
+  document.getElementById("submenu5020").style.display = "none";
+  document.getElementById("submenu8025").style.display = "none";
+  document.getElementById("submenuCEDAZOS").style.display = "none";
+  document.getElementById("submenuVENTILAS").style.display = "none";
+  document.getElementById("submenuVIDRIOSFIJOS").style.display = "none";
+  document.getElementById("submenuPUERTADEBANO").style.display = "none";
+  document.getElementById("submenuPUERTALIVIANA").style.display = "none";
+  document.getElementById("submenuPORTONPESADO").style.display = "none";
+  document.getElementById("submenuESPEJOS").style.display = "none";
+  document.getElementById("submenuPANEL").style.display = "none";
+  document.getElementById("submenuCURVAS").style.display = "none";
+  document.getElementById("submenuCOTIZACIONLIBRE").style.display = "none";
+  document.getElementById("cotizador").style.display = "none";
+
+  document.getElementById("menu").style.display = "block";
+
+}
+
+/* 🔹 VOLVER SUBMENÚ */
+function volverSubmenu() {
+  document.getElementById("cotizador").style.display = "none";
+
+  if (sistemaActual === "5020") {
+    document.getElementById("submenu5020").style.display = "block";
+  }
+
+  else if (sistemaActual === "8025") {
+    document.getElementById("submenu8025").style.display = "block";
+  }
+
+  else if (sistemaActual === "CEDAZOS") {
+    document.getElementById("submenuCEDAZOS").style.display = "block";
+  }
+
+  else if (sistemaActual === "VENTILAS") {
+    document.getElementById("submenuVENTILAS").style.display = "block";
+  }
+
+    else if (sistemaActual === "VIDRIOS FIJOS") {
+    document.getElementById("submenuVIDRIOSFIJOS").style.display = "block";
+  }
+
+    else if (sistemaActual === "PUERTA DE BANO") {
+    document.getElementById("submenuPUERTADEBANO").style.display = "block";
+  }
+
+    else if (sistemaActual === "PUERTA LIVIANA") {
+    document.getElementById("submenuPUERTALIVIANA").style.display = "block";
+  }
+
+    else if (sistemaActual === "PORTON PESADO") {
+    document.getElementById("submenuPORTONPESADO").style.display = "block";
+  }
+
+    else if (sistemaActual === "ESPEJOS") {
+    document.getElementById("submenuESPEJOS").style.display = "block";
+  }
+
+    else if (sistemaActual === "PANEL") {
+    document.getElementById("submenuPANEL").style.display = "block";
+  }
+
+      else if (sistemaActual === "CURVAS") {
+    document.getElementById("submenuCURVAS").style.display = "block";
+  }
+
+    else if (sistemaActual === "COTIZACION LIBRE") {
+    document.getElementById("submenuCOTIZACIONLIBRE").style.display = "block";
+  }
+}
+
+/* ==========================
+   PRECIOS DE VIDRIO
+========================== */
+
+const preciosVidrio = {
+
+  "VIDRIO 4mm BRONCE": 0.44,
+  "VIDRIO 4mm CLARO": 0.41,
+  "VIDRIO 4mm GRIS": 0.47,
+  "VIDRIO 5mm BRONCE": 0.65,
+  "VIDRIO 5mm CLARO": 0.53,
+  "VIDRIO 5mm GRIS": 0.70,
+  "VIDRIO 5mm ARENADO BRONCE": 2.16,
+  "VIDRIO 5mm NIEVE BRONCE": 1.09,
+  "ALUMINIO COMPUESTO 4mm NEGRO": 1.26,
+  "ACRILICO BRONCE (CAÑAVERAL/ESMERILADO)": 0.94,
+  "LAMINA DE ESPEJO": 0.50
+};
+
+const perfiles = {
+"Cargador 5020 bronce": 1298.46,
+"Umbral 5020 bronce": 1423.93,
+"Jamba 5020 bronce": 1280.60,
+"Vertical llavín 5020 bronce": 1267.00,
+"Vertical centro 5020 bronce": 1046.76,
+"Superior 5020 bronce": 1360.54,
+"Inferior 5020 bronce": 1506.79,
+"Adaptador 5020 bronce": 718.06,
+"Cargador 5020 negro": 1442.73,
+"Umbral 5020 negro": 1575.01,
+"Jamba 5020 negro": 1422.89,
+"Vertical llavín 5020 negro": 1407.78,
+"Vertical centro 5020 negro": 1163.07,
+"Superior 5020 negro": 1511.71,
+"Inferior 5020 negro": 1674.21,
+"Adaptador 5020 negro": 776.64,
+"Cargador 5020 natural": 1373.76,
+"Umbral 5020 natural": 1500.37,
+"Jamba 5020 natural": 1354.87,
+"Vertical llavín 5020 natural": 1340.69,
+"Vertical centro 5020 natural": 1107.32,
+"Superior 5020 natural":1439.90,
+"Inferior 5020 natural": 1594.85,
+"Adaptador 5020 natural": 739.79,
+"Lateral PB": 1439.18,
+"Jamba PB": 2007.32,
+"Superior PB": 1966.16,
+"Inferior PB": 1254.72,
+"Pañera PB": 892.85,
+"Soporte de pañera PB": 2914.76,
+"Cargador PB":  4023.03,
+"Umbral PB": 1392.66,
+"Moldura cedazo 1/2 bronce": 441.23,
+"Cenefa bronce": 2890.19,
+"Riel portón pesado bronce": 3018.69,
+"Tubo 1x2 - 2 cejas bronce": 2554.78,
+"X12 bronce": 1352.03,
+"Tubo 1x2 - 1 ceja bronce": 2392.27,
+"Moldura cedazo 1 bronce": 672.71,
+"Venilla 1/2 x 1/2 bronce": 499.81,
+"Chapa X11 bronce": 2017.18,
+"Moldura francesa bronce": 698.22,
+"Tubo aleta descentrada bronce": 2784.37,
+"Tubo 2x2 liso bronce": 4286.63,
+"Tubo 1 3/4 x 3 liso bronce": 4150.58,
+"Tubo 1 3/4 x 3 - 1 ceja bronce": 4372.61,
+"Tubo 1 3/4 x 3 - 2 cejas bronce": 4955.56,
+"Angular 1x1 bronce": 1128.11,
+"Tubo 1x1 liso bronce": 1311.40,
+"Tubo 1x2 liso bronce": 3081.05,
+"Angular 1/2 x 3/8 bronce": 459.18,
+"Tubo 1 3/4 x 4 - 1 ceja bronce": 5279.63,
+"Tubo 1 3/4 x 4 - 2 cejas bronce": 5519.62,
+"Tubo 1 3/4 x 4 liso bronce": 6739.37,
+"Marco 8040 bronce": 3557.27,
+"Envidriador Urna natural": 842.09,
+"Tubo 1x2 - 2 cejas natural": 2432.90,
+"Tubo 1x2 - 1 ceja natural": 2277.95,
+"X12 natural": 1287.78,
+"Tubo 1 3/4 x 3 - 1 ceja natural": 4164.75,
+"Tubo 1 3/4 x 3 - 2 cejas natural": 4719.36,
+"Tubo 1 3/4 x 3 liso natural": 3953.11,
+"Venilla 1/2 x 1/2 natural": 476.19,
+"Tubo 1x1 liso natural": 1080.87,
+"Tubo 2x2 liso natural": 3534.56,
+"Angular 1/2 x 3/8 natural": 437.45,
+"Angular 1x1 natural": 1074.26,
+"Moldura francesa natural": 665.15,
+"Tubo 1 3/4 x 4 - 1 ceja natural": 3605.42,
+"Tubo 1 3/4 x 4 - 2 cejas natural": 4551.18,
+"Tubo 1 3/4 x 4 liso natural": 6418.14,
+"Tubo aleta descentrada natural": 2652.10,
+"Chapa x11 natural": 1920.81,
+"Cenefa natural": 2752.25,
+"Riel porton pesado natural": 3018.69,
+"Moldura cedazo 1 natural": 777.58,
+"Moldura cedazo 1/2 natural": 420.44,
+"Marco 8040 natural": 3358.82,
+"Moldura francesa negro": 698.22,
+"Tubo 1x2 - 2 cejas negro": 2554.78,
+"Tubo 1x2 - 1 ceja negro": 2392.27,
+"X12 negro": 1352.03,
+"Venilla 1/2 x 1/2 negro": 499.81,
+"Moldura cedazo 1 negro": 1469.06,
+"Moldura cedazo 1/2 negro": 441.23,
+"Tubo 1x1 liso negro": 1311.40,
+"Tubo 1x2 liso negro": 3081.05,
+"Tubo 2x2 liso negro": 4286.63,
+"Tubo 1 3/4 x 3 - 1 ceja negro": 4372.61,
+"Tubo 1 3/4 x 3 - 2 cejas negro": 4955.56,
+"Tubo 1 3/4 x 3 liso negro": 4369.77,
+"Angular 1/2 x 3/8 negro": 459.18,
+"Angular 1x1 negro": 1128.11,
+"Tubo 1 3/4 x 4 - 1 ceja negro": 5279.63,
+"Tubo 1 3/4 x 4 - 2 cejas negro": 5519.62,
+"Tubo 1 3/4 x 4 liso negro": 4150.58,
+"Tubo aleta descentrada negro": 2784.37,
+"Cenefa negro": 2890.19,
+"Riel porton pesado negro": 3018.69,
+"Marco 8040 negro": 3557.23,
+"Cargador 2 vías 8025 bronce": 2266.61,
+"Cargador 3 vías 8025 bronce": 4106.17,
+"Umbral 2 vías 8025 bronce": 2244.88,
+"Umbral 3 vías 8025 bronce": 3685.73,
+"Jamba 2 vías 8025 bronce": 2645.40,
+"Jamba 3 vías 8025 bronce": 4405.31,
+"Vertical llavín 8025 bronce": 2767.54,
+"Vertical centro 8025 bronce": 3583.65,
+"Piso alfombra 8025 bronce": 864.51,
+"Superior 8025 bronce": 2009.62,
+"Inferior 8025 bronce": 2658.71,
+"Adaptador 8025 bronce": 899.46,
+"Cargador 2 vías 8025 negro": 2266.61,
+"Cargador 3 vías 8025 negro": 4106.17,
+"Umbral 2 vías 8025 negro": 2244.88,
+"Umbral 3 vías 8025 negro": 3685.73,
+"Jamba 2 vías 8025 negro": 2645.40,
+"Jamba 3 vías 8025 negro": 4405.31,
+"Vertical llavín 8025 negro": 2767.54,
+"Vertical centro 8025 negro": 3583.65,
+"Piso alfombra 8025 negro": 864.51,
+"Superior 8025 negro": 2009.62,
+"Inferior 8025 negro": 2658.71,
+"Adaptador 8025 negro": 899.46,
+"Contramarco Lateral/Superior 1 vía akary bronce": 2475.42,
+"Contramarco Inferior 1 vía akary bronce": 2722.96,
+"Marco cedazo corredizo akary bronce": 2030.41,
+"Adaptador enganche akary bronce": 648.14,
+"Marco 8040 akary bronce": 3358.82,
+"Adaptador akary bronce": 1403.05,
+"Marco hoja de cedazo 6030 akary bronce": 1730.90,
+"Contramarco Sup/Inf ventila": 1698.78,
+"Contramarco divisor ventila": 3206.71,
+"Jamba ventila": 2209.92,
+"Marco de hoja ventila": 2734.30,
+"Venilla ventila": 899.46
+};
+
+const accesorios = {
+"Rodines 5020":696.00,
+"Rodín Puerta Baño":435.00,
+"Escuadra cedazo 1":174.00,
+"Escuadra cedazo ½":261.00,
+"Rodín portón pesado":6960.00,
+"Rodines 8025":1740.00,
+"Guía 5020":26.10,
+"Guía superior 8025":26.10,
+"Guía inferior 8025":26.10,
+"Silicón Bostik transparente":2523.00,
+"Escuadra 1 vía akary":435.00,
+"Cerradura media luna":1740.00,
+"Rodín tándem":1305.00,
+"Escuadra universal akary":435.00,
+"Rodín akary 6030":609.00,
+"Bisagra bandera negra":2610.00,
+"Escuadra ventila plástica":261.00,
+"Llavín doble manija":13920.00,
+"Llavín sobrepuesto":21750.00,
+"Cierre 5020 Negro":2436.00,
+"Cierre 5020 Rojo":1218.00,
+"Llavín Pico Lora perfil angosto":10875.00,
+"Llavín Akari":2610.00,
+"Haladera Dummy sencilla":1305.00,
+"Haladera Dummy doble":2610.00,
+"Manilla fuerte":1740.00,
+"Haladera larga":3480.00,
+"Bisagra ventila 8 pulg":3480.00,
+"Bisagra ventila 10 pulg":4350.00,
+"Bisagra ventila 12 plug":5220.00,
+"Bisagra ventila 16 pulg":6090.00,
+"Manija ventila":3915.00
+};
+
+const empaquess = {
+"Empaque U ventana corrediza":300.00,
+"Empaque U multiuso":270.00,
+"Empaque cedazo":150.00
+};
+
+function cargarPerfiles() {
+
+    console.log("Cargando perfiles...");
+
+    let lista = document.getElementById("listaPerfiles");
+
+    console.log(lista);
+
+    lista.innerHTML = "";
+
+    for (let perfil in perfiles) {
+
+        let opcion = document.createElement("option");
+        opcion.value = perfil;
+
+        lista.appendChild(opcion);
+    }
+
+    console.log("Perfiles cargados:", lista.children.length);
+}
+
+function cargarACC() {
+
+    console.log("Cargando accesorios...");
+
+    let lista = document.getElementById("listaACC");
+
+    console.log(lista);
+
+    lista.innerHTML = "";
+
+    for (let ACC in accesorios) {
+
+        let opcion = document.createElement("option");
+        opcion.value = ACC;
+
+        lista.appendChild(opcion);
+    }
+
+    console.log("Accesorios cargados cargados:", lista.children.length);
+}
+
+function cargarEmpaques() {
+
+    console.log("Cargando empaquess...");
+
+    let lista = document.getElementById("listaEMPAQ");
+
+    console.log(lista);
+
+    lista.innerHTML = "";
+
+    for (let empaque in empaquess) {
+
+        let opcion = document.createElement("option");
+        opcion.value = empaque;
+
+        lista.appendChild(opcion);
+    }
+
+    console.log("Empaques cargados:", lista.children.length);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    limpiarCampos();
+    cargarPerfiles();
+    cargarACC();
+    cargarEmpaques();
+});
+
+/* 🔹 LIMPIAR CAMPOS */
+function limpiarCampos() {
+
+  // Limpiar inputs
+  document.querySelectorAll("input").forEach(campo => {
+    campo.value = "";
+  });
+
+  // Reiniciar vidrio
+  let vidrio = document.getElementById("tipoVidrio");
+
+  if (vidrio) {
+    vidrio.selectedIndex = 0;
+  }
+
+  // X12 inicia siempre en NO APLICA
+  const x12No = document.getElementById("x12No");
+  if (x12No) x12No.checked = true;
+
+  // Limpiar resultado
+  document.getElementById("resultado").innerText = "";
+}
+
+function actualizarCarrito() {
+
+    let cuerpo =
+    document.getElementById("cuerpoCarrito");
+
+    cuerpo.innerHTML = "";
+
+    let totalGeneral = 0;
+
+    carrito.forEach((item, index) => {
+
+        totalGeneral += item.precio;
+
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${item.descripcion}</td>
+
+            <td>
+                ${item.precio.toLocaleString("es-CR",{
+                    style:"currency",
+                    currency:"CRC",
+                    maximumFractionDigits:0
+                })}
+            </td>
+
+            <td>
+                <button onclick="eliminarItem(${index})">
+                    ❌
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("totalGeneral").innerText =
+    "Total General: " +
+    totalGeneral.toLocaleString("es-CR",{
+        style:"currency",
+        currency:"CRC",
+        maximumFractionDigits:0
+    });
+
+}
+
+
+function guardarCotizacion() {
+
+    if (carrito.length === 0) {
+      mostrarNotificacion("El carrito está vacío. Agregue artículos antes de guardar.");
+        return;
+    }
+
+    solicitarNombreCotizacion(function(nombre) {
+
+    ejecutarGuardadoCotizacion(nombre);
+
+});
+
+return;
+
+}
+
+function ejecutarGuardadoCotizacion(nombre) {
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    let total = carrito.reduce(
+        (suma, item) => suma + item.precio, 0
+    );
+
+    let numero = historial.length + 1;
+
+    let cotizacion = {
+        id: Date.now(),
+        numero: numero,
+        nombre: nombre,
+        fecha: new Date().toLocaleDateString("es-CR"),
+        articulos: JSON.parse(JSON.stringify(carrito)),
+        total: total
+    };
+
+    historial.push(cotizacion);
+
+    localStorage.setItem(
+        "historialCotizaciones",
+        JSON.stringify(historial)
+    );
+
+    // Limpiar carrito después de guardar
+    carrito = [];
+
+    actualizarCarrito();
+
+    mostrarHistorial();
+
+    mostrarNotificacion("¡Cotización guardada correctamente!");
+
+}
+
+
+function mostrarHistorial() {
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    let contenedor = document.getElementById("listaHistorial");
+
+    contenedor.innerHTML = "";
+
+    if (historial.length === 0) {
+        contenedor.innerHTML = "<p>No hay cotizaciones guardadas.</p>";
+        return;
+    }
+
+    historial.slice().reverse().forEach(cotizacion => {
+
+        let tarjeta = document.createElement("div");
+        tarjeta.className = "tarjeta-historial";
+
+        tarjeta.style.border = "1px solid #ccc";
+        tarjeta.style.borderRadius = "10px";
+        tarjeta.style.padding = "15px";
+        tarjeta.style.marginBottom = "12px";
+
+        
+        tarjeta.innerHTML = `
+            <h3>${cotizacion.nombre}</h3>
+
+            <p>Cotización #${String(cotizacion.numero).padStart(3, "0")}</p>
+
+            <p>Fecha: ${cotizacion.fecha}</p>
+
+           <strong class="total-historial">
+                ${cotizacion.total.toLocaleString("es-CR", {
+                    style: "currency",
+                    currency: "CRC",
+                    maximumFractionDigits: 0
+                })}
+            </strong>
+
+            <br><br>
+
+            <div class="botones-historial">
+
+            <button onclick="verDetalleCotizacion(${cotizacion.id})">
+                VER DETALLE
+            </button>
+
+            <button onclick="eliminarCotizacion(${cotizacion.id})">
+                ELIMINAR
+            </button>
+
+            <button onclick="recuperarCotizacion(${cotizacion.id})">
+              RECUPERAR AL CARRITO
+            </button>
+
+            </div>
+        `;
+
+
+        contenedor.appendChild(tarjeta);
+
+    });
+}
+
+
+
+function verDetalleCotizacion(id) {
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    let cotizacion = historial.find(
+        item => item.id === id
+    );
+
+    if (!cotizacion) {
+        mostrarNotificacion("No se encontró esta cotización.");
+        return;
+    }
+
+let detalle = `
+    <div class="factura-encabezado">
+        <h2>LA VIDRIERA</h2>
+        <p>Sistema de Cotización</p>
+        <h3>${cotizacion.nombre}</h3>
+        <p>Cotización #${String(cotizacion.numero).padStart(3, "0")}</p>
+        <p>Fecha: ${cotizacion.fecha}</p>
+    </div>
+
+    <div class="factura-articulos">
+        <h3>DETALLE DE ARTÍCULOS</h3>
+`;
+
+cotizacion.articulos.forEach((item, index) => {
+
+    detalle += `
+        <div class="factura-articulo">
+            <strong>${index + 1}. ${item.descripcion}</strong>
+
+            <span>
+                ${item.precio.toLocaleString("es-CR", {
+                    style: "currency",
+                    currency: "CRC",
+                    maximumFractionDigits: 0
+                })}
+            </span>
+        </div>
+    `;
+
+});
+
+detalle += `
+    </div>
+
+    <div class="factura-total">
+        <span>TOTAL GENERAL</span>
+        <strong>
+            ${cotizacion.total.toLocaleString("es-CR", {
+                style: "currency",
+                currency: "CRC",
+                maximumFractionDigits: 0
+            })}
+        </strong>
+    </div>
+`;
+
+document.getElementById("contenidoDetalleCotizacion").innerHTML = detalle;
+
+    mostrarSeccion("detalle");
+}
+
+
+
+function eliminarCotizacion(id) {
+
+mostrarConfirmacion(
+    "¿Está seguro de que desea eliminar esta cotización?",
+    function() {
+
+        ejecutarEliminacionCotizacion(id);
+
+    }
+);
+return; }
+
+function ejecutarEliminacionCotizacion(id) {
+  
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    historial = historial.filter(
+        cotizacion => cotizacion.id !== id
+    );
+
+    localStorage.setItem(
+        "historialCotizaciones",
+        JSON.stringify(historial)
+    );
+
+    mostrarHistorial();
+
+    mostrarNotificacion("Cotización eliminada correctamente.");
+
+}
+
+
+function recuperarCotizacion(id) {
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    let cotizacion = historial.find(
+        item => item.id === id
+    );
+
+    if (!cotizacion) {
+       mostrarNotificacion("No se encontró esta cotización.");
+        return;
+    }
+
+   mostrarConfirmacion(
+    "¿Desea cargar los artículos de esta cotización al carrito?",
+    function() {
+
+        ejecutarRecuperacionCotizacion(id);
+
+    }
+);
+return; }
+
+function ejecutarRecuperacionCotizacion(id) {
+
+    let historial = JSON.parse(
+        localStorage.getItem("historialCotizaciones") || "[]"
+    );
+
+    let cotizacion = historial.find(
+        item => item.id === id
+    );
+
+    if (!cotizacion) {
+        mostrarError("No se encontró esta cotización.");
+        return;
+    }
+
+    if (carrito.length > 0) {
+
+        mostrarConfirmacion(
+            "El carrito ya contiene artículos. ¿Desea agregar los artículos recuperados a los que ya existen?",
+            function() {
+
+                agregarCotizacionAlCarrito(cotizacion);
+
+            }
+        );
+
+        return;
+    }
+
+    agregarCotizacionAlCarrito(cotizacion);
+
+}
+
+function agregarCotizacionAlCarrito(cotizacion) {
+
+    cotizacion.articulos.forEach(item => {
+        carrito.push({...item});
+    });
+
+    actualizarCarrito();
+
+    mostrarSeccion("carrito");
+
+    mostrarNotificacion("Cotización recuperada correctamente.");
+
+}
+
+
+
+function eliminarItem(indice) {
+
+    carrito.splice(indice, 1);
+
+    actualizarCarrito();
+}
+
+function agregarCarrito() {
+
+    let textoResultado =
+    document.getElementById("resultado").innerText;
+
+    if (textoResultado === "") {
+
+        mostrarNotificacion("Primero debe realizar una cotización");
+
+        return;
+    }
+
+    let precioTexto =
+    textoResultado.replace(/[^\d]/g, "");
+
+    let precio =
+    parseInt(precioTexto);
+
+    if (isNaN(precio)) {
+
+        mostrarNotificacion("No se pudo obtener el precio");
+
+        return;
+    }
+
+let descripcion = "";
+
+/* ==========================
+   MTTM
+========================== */
+
+if (tipoVentana === "MTTM") {
+
+    let anchoIzq =
+    document.getElementById("anchoIzq").value;
+
+    let anchoDer =
+    document.getElementById("anchoDer").value;
+
+    let alto =
+    document.getElementById("alto").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (Izq:" + anchoIzq +
+    " / Der:" + anchoDer +
+    " / Alto:" + alto +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+/* ==========================
+   VENTILA HORIZONTAL
+========================== */
+
+else if (
+    tipoVentana ===
+    "VENTILA CON VIDRIO FIJO HORIZONTAL"
+) {
+
+    let anchoTotal =
+    document.getElementById("anchoTotal").value;
+
+    let anchoVentila =
+    document.getElementById("anchoVentila").value;
+
+    let alto =
+    document.getElementById("alto").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (Total:" + anchoTotal +
+    " / Ventila:" + anchoVentila +
+    " / Alto:" + alto +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+/* ==========================
+   VENTILA VERTICAL
+========================== */
+
+else if (
+    tipoVentana ===
+    "VENTILA CON VIDRIO FIJO VERTICAL"
+) {
+
+    let ancho =
+    document.getElementById("ancho").value;
+
+    let altoTotal =
+    document.getElementById("altoTotal").value;
+
+    let altoVentila =
+    document.getElementById("altoVentila").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (Ancho:" + ancho +
+    " / Total:" + altoTotal +
+    " / Ventila:" + altoVentila +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+/* ==========================
+   PUERTA BAÑO CON PANEL
+========================== */
+
+else if (
+    tipoVentana ===
+    "PUERTA DE BANO CON PANEL"
+) {
+
+    let anchoPB =
+    document.getElementById("anchoPB").value;
+
+    let anchoPanel =
+    document.getElementById("anchoPanel").value;
+
+    let alto =
+    document.getElementById("alto").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (Puerta:" + anchoPB +
+    " / Panel:" + anchoPanel +
+    " / Alto:" + alto +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+/* ==========================
+   PUERTA BAÑO ESCUADRA
+========================== */
+
+else if (
+    tipoVentana ===
+    "PUERTA DE BANO EN ESCUADRA"
+) {
+
+    let anchoPB1 =
+    document.getElementById("anchoPB1").value;
+
+    let anchoPB2 =
+    document.getElementById("anchoPB2").value;
+
+    let alto =
+    document.getElementById("alto").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (Lado1:" + anchoPB1 +
+    " / Lado2:" + anchoPB2 +
+    " / Alto:" + alto +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+/* ==========================
+   PERFILES
+========================== */
+
+else if (
+    tipoVentana ===
+    "PERFILES DE ALUMINIO"
+) {
+
+    let perfil =
+    document.getElementById("perfilAluminio").value;
+
+    let cantidad =
+    document.getElementById("cantidadPerfil").value;
+
+    descripcion =
+    "PERFIL - " +
+    perfil +
+    " (" +
+    cantidad +
+    " cm)";
+}
+
+/* ==========================
+   ACCESORIOS
+========================== */
+
+else if (
+    tipoVentana ===
+    "ACCESORIOS"
+) {
+
+    let accesorio =
+    document.getElementById("Accesorios").value;
+
+    let cantidad =
+    document.getElementById("cantidadACC").value;
+
+    descripcion =
+    "ACCESORIO - " +
+    accesorio +
+    " (" +
+    cantidad +
+    " unidades)";
+}
+
+/* ==========================
+   EMPAQUES
+========================== */
+
+else if (
+    tipoVentana ===
+    "EMPAQUE"
+) {
+
+    let empaque =
+    document.getElementById("Empaques").value;
+
+    let cantidad =
+    document.getElementById("cantidadEMPA").value;
+
+    descripcion =
+    "EMPAQUE - " +
+    empaque +
+    " (" +
+    cantidad +
+    " cm)";
+}
+
+/* ==========================
+   RESTO DE SISTEMAS
+========================== */
+
+else {
+
+    let ancho =
+    document.getElementById("ancho").value;
+
+    let alto =
+    document.getElementById("alto").value;
+
+    let vidrio =
+    document.getElementById("tipoVidrio").value;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " (" +
+    ancho +
+    " x " +
+    alto +
+    ")" +
+    " - " +
+    vidrio;
+}
+
+if (
+  sistemaActual === "5020" &&
+  tipoVentana === "FM / MF" &&
+  document.getElementById("x12Si").checked
+) {
+  descripcion += " - X12 APLICA";
+}
+
+let detalle = "";
+let vidrio = "";
+
+/* MTTM */
+if (tipoVentana === "MTTM") {
+
+    detalle =
+    "Izq: " + document.getElementById("anchoIzq").value +
+    " cm | Der: " + document.getElementById("anchoDer").value +
+    " cm | Alto: " + document.getElementById("alto").value + " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+/* VENTILA HORIZONTAL */
+else if (tipoVentana === "VENTILA CON VIDRIO FIJO HORIZONTAL") {
+
+    detalle =
+    "Total: " + document.getElementById("anchoTotal").value +
+    " cm | Ventila: " +
+    document.getElementById("anchoVentila").value +
+    " cm | Alto: " +
+    document.getElementById("alto").value + " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+/* VENTILA VERTICAL */
+else if (tipoVentana === "VENTILA CON VIDRIO FIJO VERTICAL") {
+
+    detalle =
+    "Ancho: " + document.getElementById("ancho").value +
+    " cm | Alto total: " +
+    document.getElementById("altoTotal").value +
+    " cm | Ventila: " +
+    document.getElementById("altoVentila").value +
+    " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+/* PUERTA PANEL */
+else if (tipoVentana === "PUERTA DE BANO CON PANEL") {
+
+    detalle =
+    "Puerta: " + document.getElementById("anchoPB").value +
+    " cm | Panel: " +
+    document.getElementById("anchoPanel").value +
+    " cm | Alto: " +
+    document.getElementById("alto").value + " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+/* PUERTA ESCUADRA */
+else if (tipoVentana === "PUERTA DE BANO EN ESCUADRA") {
+
+    detalle =
+    "Lado 1: " + document.getElementById("anchoPB1").value +
+    " cm | Lado 2: " +
+    document.getElementById("anchoPB2").value +
+    " cm | Alto: " +
+    document.getElementById("alto").value + " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+/* PERFILES */
+else if (tipoVentana === "PERFILES DE ALUMINIO") {
+
+    detalle =
+    document.getElementById("perfilAluminio").value +
+    " | Cantidad: " +
+    document.getElementById("cantidadPerfil").value +
+    " cm";
+}
+
+/* ACCESORIOS */
+else if (tipoVentana === "ACCESORIOS") {
+
+    detalle =
+    document.getElementById("Accesorios").value +
+    " | Cantidad: " +
+    document.getElementById("cantidadACC").value +
+    " unidades";
+}
+
+/* EMPAQUES */
+else if (tipoVentana === "EMPAQUE") {
+
+    detalle =
+    document.getElementById("Empaques").value +
+    " | Cantidad: " +
+    document.getElementById("cantidadEMPA").value +
+    " cm";
+}
+
+else if (sistemaActual === "VIDRIOS FIJOS" &&
+    tipoVentana !== "VIDRIO FIJO CON TUBO 1X2 COMO CARGADOR") {
+
+    let perfilSeleccionado =
+    document.getElementById("perfilFijo");
+
+    let nombrePerfil =
+    perfilSeleccionado.options[perfilSeleccionado.selectedIndex].text;
+
+    descripcion =
+    sistemaActual +
+    " - " +
+    tipoVentana +
+    " - PERFIL: " +
+    nombrePerfil +
+    " (" +
+    document.getElementById("ancho").value +
+    " x " +
+    document.getElementById("alto").value +
+    " cm)";
+}
+
+/* RESTO */
+else {
+
+    detalle =
+    document.getElementById("ancho").value +
+    " x " +
+    document.getElementById("alto").value +
+    " cm";
+
+    vidrio =
+    document.getElementById("tipoVidrio").value;
+}
+
+    carrito.push({
+
+    descripcion: descripcion,
+    precio: precio,
+
+    sistema: sistemaActual,
+    tipo: tipoVentana,
+
+    detalle: detalle,
+    vidrio: vidrio
+
+});
+
+    actualizarCarrito();
+
+    mostrarNotificacion("Artículo agregado al carrito");
+
+}
+
+function generarWhatsApp() {
+
+    if (carrito.length === 0) {
+        mostrarNotificacion("No hay cotizaciones agregadas");
+        return;
+    }
+
+    let mensaje = "📋 *COTIZACIÓN LA VIDRIERA*\n\n";
+
+    let totalGeneral = 0;
+
+    carrito.forEach((item, index) => {
+
+        mensaje += `🔹 *Artículo ${index + 1}*\n`;
+        mensaje += `${item.descripcion}\n`;
+        mensaje += `💰 ${item.precio.toLocaleString("es-CR", {
+            style: "currency",
+            currency: "CRC",
+            maximumFractionDigits: 0
+        })}\n\n`;
+
+        totalGeneral += item.precio;
+    });
+
+    mensaje += "━━━━━━━━━━━━━━━━━━━━\n";
+    mensaje += `💵 *TOTAL GENERAL:* ${totalGeneral.toLocaleString("es-CR", {
+        style: "currency",
+        currency: "CRC",
+        maximumFractionDigits: 0
+    })}\n`;
+    mensaje += "━━━━━━━━━━━━━━━━━━━━\n\n";
+
+    mensaje += "Gracias por cotizar con *La Vidriera*.";
+
+    let numero = "50660174027";
+
+    let url =
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+}
+
+
+/* 🔹 CALCULAR */
+function calcular() {
+
+  // 🔹 COTIZACIÓN DE PERFILES DE ALUMINIO
+if (tipoVentana === "PERFILES DE ALUMINIO") {
+
+    let perfil =
+    document.getElementById("perfilAluminio").value;
+
+    let cantidad =
+    parseFloat(document.getElementById("cantidadPerfil").value);
+
+    if (!perfiles[perfil]) {
+        mostrarNotificacion("Seleccione un perfil válido");
+        return;
+    }
+
+    if (!cantidad || cantidad <= 0) {
+        mostrarNotificacion("Ingrese una cantidad válida");
+        return;
+    }
+
+    let precioMetro = perfiles[perfil];
+
+    let costo =
+    (cantidad / 100) * precioMetro;
+
+    let ganancia = 0.70; // 70%
+
+    let neto = (costo * ganancia) + costo;
+
+    /* 🔥 IVA */
+    let IVA= (neto * 0.13);
+
+    let total= (neto + IVA);
+
+
+    document.getElementById("resultado").innerText =
+    "Precio Final: " +
+    total.toLocaleString("es-CR", {
+        style: "currency",
+        currency: "CRC",
+        maximumFractionDigits: 0
+    });
+
+    return;
+}
+
+// 🔹 COTIZACIÓN DE ACCESORIOS
+if (tipoVentana === "ACCESORIOS") {
+
+    let accesorio =
+    document.getElementById("Accesorios").value;
+
+    let cantidad =
+    parseFloat(document.getElementById("cantidadACC").value);
+
+    if (!accesorios[accesorio]) {
+        mostrarNotificacion("Seleccione un accesorio válido");
+        return;
+    }
+
+    if (!cantidad || cantidad <= 0) {
+        mostrarNotificacion("Ingrese una cantidad válida");
+        return;
+    }
+
+    let precioUnitario =
+    accesorios[accesorio];
+
+    let costo=
+    precioUnitario * cantidad;
+
+      /* 🔥 IVA */
+  let IVA= (costo * 0.15);
+
+  let total = (costo + IVA);
+
+    document.getElementById("resultado").innerText =
+    "Precio Final: " +
+    total.toLocaleString("es-CR", {
+        style: "currency",
+        currency: "CRC",
+        maximumFractionDigits: 0
+    });
+
+    return;
+}
+
+ // 🔹 COTIZACIÓN DE EMPAQUES
+if (tipoVentana === "EMPAQUE") {
+
+    let Empaque =
+    document.getElementById("Empaques").value;
+
+    let cantidad =
+    parseFloat(document.getElementById("cantidadEMPA").value);
+
+    if (!empaquess[Empaque]) {
+        mostrarNotificacion("Seleccione un empaque válido");
+        return;
+    }
+
+    if (!cantidad || cantidad <= 0) {
+        mostrarNotificacion("Ingrese una cantidad válida");
+        return;
+    }
+
+    let precioMetro = empaquess[Empaque];
+
+    let costo =
+    (cantidad / 100) * precioMetro;
+
+    let ganancia = 1.00; // 100%
+
+    let neto = (costo * ganancia) + costo;
+
+    /* 🔥 IVA */
+    let IVA= (neto * 0.13);
+
+    let total= (neto + IVA);
+
+
+    document.getElementById("resultado").innerText =
+    "Precio Final: " +
+    total.toLocaleString("es-CR", {
+        style: "currency",
+        currency: "CRC",
+        maximumFractionDigits: 0
+    });
+
+    return;
+}
+
+let requiereVidrio = !(
+    tipoVentana === "CEDAZO 1" ||
+    tipoVentana === "CEDAZO 1/2" ||
+    tipoVentana === "CEDAZO MONORIEL" ||
+    tipoVentana === "CEDAZO MONORIEL DOBLE" ||
+    tipoVentana === "ROLLO DE CEDAZO" ||
+    tipoVentana === "PERFILES DE ALUMINIO" ||
+    tipoVentana === "ACCESORIOS" ||
+    tipoVentana === "EMPAQUE"
+);
+
+let tipoVidrioSeleccionado =
+document.getElementById("tipoVidrio").value;
+
+
+if (requiereVidrio && tipoVidrioSeleccionado === "") {
+
+    document.activeElement.blur();
+
+    setTimeout(() => {
+        mostrarNotificacion("Debe seleccionar un tipo de vidrio.");
+    },100);
+
+    return;
+
+}
+
+  let ancho = parseFloat(document.getElementById("ancho").value);
+  let alto = parseFloat(document.getElementById("alto").value);
+
+
+let tipoVidrio = document.getElementById("tipoVidrio").value;
+let precioVidrio = preciosVidrio[tipoVidrio];
+
+  let ganancia = 0;
+
+  let costo = 0;
+  let materiales = [];
+ 
+
+  /* ========================================================= */
+  /* 🔥 SISTEMA 5020 */
+  /* ========================================================= */
+
+  if (sistemaActual === "5020") {
+
+    if (tipoVentana === "FM / MF") {
+      
+      ganancia = 40;
+    
+      materiales = [
+        {cantidad: ancho, precio: 15.75},
+        {cantidad: ancho, precio: 14.43},
+        {cantidad: (alto - 1.6) * 2, precio: 14.23},
+        {cantidad: ((ancho / 2) - 1.5) + 1, precio: 16.74},
+        {cantidad: ((ancho / 2) - 1.5) * 3, precio: 15.12},
+        {cantidad: ((alto - 4) + (alto - 3)), precio: 14.08},
+        {cantidad: ((alto - 4) + (alto - 3)), precio: 11.63},
+        {cantidad: 2, precio: 391.55},
+        {cantidad: (alto - 6) * 2, precio: 0.44},
+        {cantidad: 6, precio: 24.86},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: alto * 4, precio: 3.02},
+        {cantidad: ancho * 2, precio: 3.02},
+        {cantidad: 1, precio: 1898.40},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+      ];
+
+    }
+
+    else if (tipoVentana === "MM") {
+
+      ganancia = 40;
+
+
+      materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: (((ancho / 3) - 1.5) + 1) * 2, precio: 16.74},
+    {cantidad: ((ancho / 3) - 1.5) * 2, precio: 15.12},
+    {cantidad: ((alto - 4) + (alto - 4)), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 4)), precio: 11.63},
+    {cantidad: 4, precio: 400.00},
+    {cantidad: (alto - 6) * 2, precio: 0.44},
+    {cantidad: 4, precio: 24.86},
+    {cantidad: 8, precio: 11.30},
+    {cantidad: alto * 4, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 2, precio: 1900.00},
+    {cantidad: (ancho * alto), precio: precioVidrio} // cambia
+  ];
+
+}
+
+else if (tipoVentana === "FMF") {
+
+  ganancia = 40;
+
+  materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: ((ancho / 3) - 1.5) + 1, precio: 16.74},
+    {cantidad: ((ancho / 3) - 1.5) * 5, precio: 15.12},
+    {cantidad: ((alto - 4) + (alto - 3)) + ((alto - 3) * 2), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)), precio: 11.63},
+    {cantidad: alto, precio: 7.77},
+    {cantidad: 2, precio: 391.55},
+    {cantidad: (alto - 7) * 2, precio: 0.44},
+    {cantidad: 10, precio: 24.86},
+    {cantidad: 12, precio: 11.30},
+    {cantidad: alto * 6, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (ancho * alto), precio: precioVidrio} // cambia
+  ];
+
+}
+
+else if (tipoVentana === "MFM") {
+
+  ganancia = 40;
+
+  materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: (((ancho / 4) - 1.5) + 1) * 2, precio: 16.74},
+    {cantidad: (((ancho / 2) + 1.5) * 2) + (((ancho / 4) - 1.5) * 2), precio: 15.12},
+    {cantidad: ((alto - 4) + (alto - 4)), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)) + ((alto - 3) * 2), precio: 11.63},
+    {cantidad: 4, precio: 391.55},
+    {cantidad: (alto - 7) * 4, precio: 0.44},
+    {cantidad: 8, precio: 24.86},
+    {cantidad: 12, precio: 11.30},
+    {cantidad: alto * 6, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+}
+
+else if (tipoVentana === "FMMF") {
+
+  ganancia = 50;
+
+  materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: ((((ancho / 4) - 1.5) + 1.6) + 1) * 2, precio: 16.74},
+    {cantidad: (((ancho / 4) - 1.5) + 1.6) * 6, precio: 15.12},
+    {cantidad: ((alto - 4) + (alto - 3)) * 2, precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)) * 2, precio: 11.63},
+    {cantidad: alto, precio: 7.77},
+    {cantidad: 4, precio: 391.55},
+    {cantidad: (alto - 7) * 4, precio: 0.44},
+    {cantidad: 12, precio: 24.86},
+    {cantidad: 16, precio: 11.30},
+    {cantidad: alto * 8, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+}
+
+else if (tipoVentana === "FM / MF con Cedazo") {
+
+  ganancia = 42;
+
+  materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: ((ancho / 2) - 1.5) + 1, precio: 16.74},
+    {cantidad: ((ancho / 2) - 1.5) * 3, precio: 15.12},
+    {cantidad: ((alto - 4) + (alto - 3)), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)), precio: 11.63},
+    {cantidad: (((ancho / 2) + 0.5) * 2) + ((alto - 0.4) * 2), precio: 10.00},
+    {cantidad: (((ancho / 2) + 0.5) * 2) + ((alto - 0.4) * 2), precio: 1.43},
+    {cantidad: 2, precio: 391.55},
+    {cantidad: 4, precio: 280.00},
+    {cantidad: 8, precio: 11.30},
+    {cantidad: (alto - 7) * 2, precio: 0.44},
+    {cantidad: 8, precio: 24.86},
+    {cantidad: 8, precio: 11.30},
+    {cantidad: alto * 4, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (ancho * alto), precio: 0.03},
+    {cantidad: (ancho * alto), precio: precioVidrio} // cambia
+  ];
+
+}
+
+else if (tipoVentana === "FMF con Cedazo") {
+
+  ganancia = 42;
+
+  materiales = [
+    {cantidad: ancho, precio: 15.75},
+    {cantidad: ancho, precio: 14.43},
+    {cantidad: (alto - 1.6) * 2, precio: 14.23},
+    {cantidad: (((ancho / 3) - 1.5) + 1) * 2, precio: 16.74},
+    {cantidad: ((ancho / 3) - 1.5) * 6, precio: 15.12},
+    {cantidad: ((alto - 4) + ((alto - 3) * 2)) + ((alto - 3) * 2), precio: 14.08},
+    {cantidad: ((alto - 4) + ((alto - 3) * 2)), precio: 11.63},
+    {cantidad: ((ancho / 3) * 2) + (alto * 2), precio: 4.41},
+    {cantidad: alto, precio: 7.77},
+    {cantidad: 4, precio: 391.55},
+    {cantidad: (alto - 7) * 2, precio: 0.44},
+    {cantidad: 12, precio: 24.86},
+    {cantidad: 16, precio: 11.30},
+    {cantidad: alto * 6, precio: 3.02},
+    {cantidad: ancho * 2, precio: 3.02},
+    {cantidad: 2, precio: 1898.40},
+    {cantidad: (ancho * alto), precio: 0.03},
+    {cantidad: (ancho * alto), precio: precioVidrio} // cambia
+  ];
+
+}
+
+else if (tipoVentana === "ABATIBLE") {
+
+  ganancia = 45;
+
+  materiales = [
+    {cantidad: (ancho * 2) + (alto * 2), precio: 23.92},
+    {cantidad: 20, precio: 11.28},
+    {cantidad: ((ancho* 2) - 5) + ((alto * 2) - 5), precio: 14.08},
+    {cantidad: 2, precio: 1000.00},
+    {cantidad: 4, precio: 11.30},
+    {cantidad: 16, precio: 11.30},
+    {cantidad: 1, precio: 2000},
+    {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+}
+
+if (tipoVentana === "MTTM") {
+
+  ganancia = 70;
+
+  let anchoIzq = parseFloat(document.getElementById("anchoIzq").value);
+  let anchoDer = parseFloat(document.getElementById("anchoDer").value);
+
+  if (!anchoIzq || !anchoDer || !alto) {
+    mostrarNotificacion("Ingresá ancho izquierdo, derecho y alto");
+    return;
+  }
+
+  // 🔹 COSTO IZQUIERDA
+  let costoIzq = 0;
+
+  let materialesIzq = [
+    {cantidad: anchoIzq, precio: 15.75},
+    {cantidad: anchoIzq, precio: 14.43},
+    {cantidad: (alto - 1.6) * 1, precio: 14.23},
+    {cantidad: ((anchoIzq / 2) - 1.5) + 1, precio: 13.74},
+    {cantidad: (((anchoIzq / 2) - 1.5)) + ((((anchoIzq / 2) - 1.5) + 10) * 2), precio: 15.12},
+    {cantidad: (alto - 3), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)), precio: 11.63},
+    {cantidad: 2, precio: 391.55},
+    {cantidad: (alto - 7) * 2, precio: 0.44},
+    {cantidad: 6, precio: 24.86},
+    {cantidad: 8, precio: 11.30},
+    {cantidad: alto * 2, precio: 3.02},
+    {cantidad: anchoIzq * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (anchoIzq * alto), precio: precioVidrio}
+  ];
+
+  materialesIzq.forEach(mat => {
+    costoIzq += Math.max(0, mat.cantidad) * mat.precio;
+  });
+
+  // 🔹 COSTO DERECHA
+  let costoDer = 0;
+
+  let materialesDer = [
+    {cantidad: anchoDer, precio: 15.75},
+    {cantidad: anchoDer, precio: 14.43},
+    {cantidad: (alto - 1.6) * 1, precio: 14.23},
+    {cantidad: ((anchoDer / 2) - 1.5) + 1, precio: 16.74},
+    {cantidad: (((anchoDer / 2) - 1.5)) + ((((anchoDer/ 2) - 1.5) + 10) * 2), precio: 15.12},
+    {cantidad: (alto - 3), precio: 14.08},
+    {cantidad: ((alto - 4) + (alto - 3)), precio: 11.63},
+    {cantidad: 2, precio: 391.55},
+    {cantidad: (alto - 7) * 2, precio: 0.44},
+    {cantidad: 6, precio: 24.86},
+    {cantidad: 8, precio: 11.30},
+    {cantidad: alto * 2, precio: 3.02},
+    {cantidad: anchoDer * 2, precio: 3.02},
+    {cantidad: 1, precio: 1898.40},
+    {cantidad: (anchoDer * alto), precio: precioVidrio}
+  ];
+
+  materialesDer.forEach(mat => {
+    costoDer += Math.max(0, mat.cantidad) * mat.precio;
+  });
+
+  // 🔥 COSTO TOTAL
+  costo = costoIzq + costoDer;
+
+}
+
+}
+  /* ========================================================= */
+  /* 🔥 SISTEMA 8025 */
+  /* ========================================================= */
+
+  else if (sistemaActual === "8025") {
+
+    if (tipoVentana === "FM / MF") {
+
+
+      ganancia = 35;
+
+            materiales = [
+
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10768.90},
+        {cantidad: ((ancho / 2) - 0.3) * 2, precio: 26.59},
+        {cantidad: ((ancho / 2) - 0.3) * 2, precio: 20.10},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 12000.00},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 15000.00},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 2, precio: 700.00},
+        {cantidad: (alto) * 2, precio: 0.44},
+        {cantidad: 4, precio: 25.15},
+        {cantidad: 4, precio: 24.86},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: alto * 4, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+
+    }
+
+    else if (tipoVentana === "MM") {
+
+      ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10768.90},
+        {cantidad: ((ancho / 2) - 0.3) * 2, precio: 26.59},
+        {cantidad: ((ancho / 2) - 0.3) * 2, precio: 20.10},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 11266.10},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 14588.30},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 4, precio: 627.72},
+        {cantidad: (alto) * 2, precio: 0.44},
+        {cantidad: 4, precio: 25.15},
+        {cantidad: 4, precio: 24.86},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: alto * 4, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 2, precio: 16929.66},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+    }
+
+    else if (tipoVentana === "FMF") {
+
+      ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10768.90},
+        {cantidad: ((ancho / 3) - 0.6) * 3, precio: 26.59},
+        {cantidad: ((ancho / 3) - 0.6) * 3, precio: 20.10},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 11266.00},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 14588.30},
+        {cantidad: (alto <= 230 ? 0.5 : 1), precio: 4760.00},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 2, precio: 700.00},
+        {cantidad: (alto) * 2, precio: 0.44},
+        {cantidad: 6, precio: 25.15},
+        {cantidad: 6, precio: 24.86},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: alto * 6, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 16929.66},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+    }
+
+        else if (tipoVentana === "TRES VIAS") {
+
+          ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 36.86},
+        {cantidad: ancho, precio: 41.06},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 18000.00},
+        {cantidad: ((ancho / 3) - 0.8) * 2, precio: 26.59},
+        {cantidad: ((ancho / 3) + 3.2), precio: 26.59},
+        {cantidad: ((ancho / 3) - 0.8) * 2, precio: 20.10},
+        {cantidad: ((ancho / 3) + 3.2), precio: 20.10},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 12000.00},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 15000.00},
+        {cantidad: 4, precio: 700.00},
+        {cantidad: (alto) * 4, precio: 0.44},
+        {cantidad: 6, precio: 25.15},
+        {cantidad: 6, precio: 24.86},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: alto * 6, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+    }
+
+        else if (tipoVentana === "FMMF") {
+
+          ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10770.90},
+        {cantidad: ((ancho / 4) - 0.3) * 4, precio: 26.59},
+        {cantidad: ((ancho / 4) - 0.3) * 4, precio: 20.10},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 12000.00},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 15000.00},
+        {cantidad: (alto <= 230 ? 0.5 : 1), precio: 4760.00},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 4, precio: 700.00},
+        {cantidad: (alto) * 4, precio: 0.44},
+        {cantidad: 8, precio: 25.15},
+        {cantidad: 8, precio: 24.86},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: alto * 8, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: 2, precio: 1900.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+    }
+
+            else if (tipoVentana === "MMMM") {
+
+              ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10768.90},
+        {cantidad: ((ancho / 4) - 0.3) * 4, precio: 26.59},
+        {cantidad: ((ancho / 4) - 0.3) * 4, precio: 20.10},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 11300.00},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 15000.00},
+        {cantidad: (alto <= 230 ? 0.5 : 1), precio: 4760.00},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 8, precio: 700.00},
+        {cantidad: (alto) * 4, precio: 0.44},
+        {cantidad: 8, precio: 25.15},
+        {cantidad: 8, precio: 24.86},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: alto * 8, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 2, precio: 16929.66},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+  ];
+
+    }
+
+  else if (tipoVentana === "FM / MF con CEDAZO") {
+
+
+      ganancia = 35;
+
+            materiales = [
+
+        {cantidad: ancho, precio: 36.86},
+        {cantidad: ancho, precio: 41.06},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 17940.00},
+        {cantidad: ((ancho / 2) - 0.3) * 3, precio: 26.59},
+        {cantidad: ((ancho / 2) - 0.3) * 3, precio: 20.10},
+        {cantidad: (alto <= 230 ? 2 : 3), precio: 12000.00},
+        {cantidad: (alto <= 230 ? 2 : 3), precio: 15000.00},
+        {cantidad: (((alto - 2.5) * 2) + (((ancho / 2) - 0.3) * 2)), precio: 4.41},
+        {cantidad: 4, precio: 700.00},
+        {cantidad: (alto) * 3, precio: 0.44},
+        {cantidad: 6, precio: 25.15},
+        {cantidad: 6, precio: 24.86},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: alto * 6, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: 1, precio: 2000.00},
+        {cantidad: ((ancho / 2) * alto), precio: 0.03},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+
+    }
+
+        else if (tipoVentana === "FMF con CEDAZO") {
+
+          ganancia = 35
+          ;
+
+      materiales = [
+        {cantidad: ancho, precio: 22.45},
+        {cantidad: ancho, precio: 22.67},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 10768.90},
+        {cantidad: ((ancho / 3) - 0.3) * 4, precio: 26.59},
+        {cantidad: ((ancho / 3) - 0.3) * 4, precio: 20.10},
+        {cantidad: (alto <= 230 ? 3 : 6), precio: 11266.10},
+        {cantidad: (alto <= 230 ? 2 : 4), precio: 14588.30},
+        {cantidad: (alto <= 230 ? 0.5 : 1), precio: 4760.00},
+        {cantidad: ancho, precio: 10.94},
+        {cantidad: 4, precio: 700.00},
+        {cantidad: (alto) * 3, precio: 0.44},
+        {cantidad: 8, precio: 25.15},
+        {cantidad: 8, precio: 24.86},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: alto * 8, precio: 2.82},
+        {cantidad: ancho * 2, precio: 2.82},
+        {cantidad: 1, precio: 16929.66},
+        {cantidad: 1, precio: 1900.00},
+        {cantidad: (alto - 2.5) * 2, precio: 4.41},
+        {cantidad: ((ancho / 2) - 0.3) * 2, precio: 4.41},
+        {cantidad: (ancho * alto), precio: precioVidrio},
+        {cantidad: (((ancho / 3) - 0.3) * (alto - 2.5)), precio: 0.03}
+  ]; 
+
+    }
+
+           else if (tipoVentana === "FMMF con CEDAZO") {
+
+            ganancia = 35;
+
+      materiales = [
+        {cantidad: ancho, precio: 36.86},
+        {cantidad: ancho, precio: 41.06},
+        {cantidad: (alto <= 230 ? 1 : 2), precio: 17933.10},
+        {cantidad: ((ancho / 4) - 0.3) * 6, precio: 26.59},
+        {cantidad: ((ancho / 4) - 0.3) * 6, precio: 20.10},
+        {cantidad: (alto <= 230 ? 3 : 6), precio: 11266.10},
+        {cantidad: (alto <= 230 ? 3 : 6), precio: 14588.30},
+        {cantidad: (alto <= 230 ? 1: 2), precio: 4760.00},
+        {cantidad: (alto) * 6, precio: 0.44},
+        {cantidad: 8, precio: 627.72},
+        {cantidad: 12, precio: 25.15},
+        {cantidad: 12, precio: 24.86},
+        {cantidad: 24, precio: 11.30},
+        {cantidad: alto * 12, precio: 2.82},
+        {cantidad: ((ancho * 2) + ((ancho / 4) * 2)), precio: 2.82},
+        {cantidad: 1, precio: 8500.00},
+        {cantidad: 4, precio: 1900.00},
+        {cantidad: (alto - 2.5) * 4, precio: 4.41},
+        {cantidad: ((ancho / 2) - 0.3) * 4, precio: 4.41},
+        {cantidad: (ancho * alto), precio: precioVidrio},
+        {cantidad: ((((ancho / 4) - 0.3) * (alto - 2.5)))*2, precio: 0.03}
+  ]; 
+
+    }
+}    
+     /* ========================================================= */
+  /* 🔥 SISTEMA CEDAZOS */
+  /* ========================================================= */
+
+  else if (sistemaActual === "CEDAZOS") {
+
+    if (tipoVentana === "CEDAZO 1") {
+
+      ganancia = 120;
+
+            materiales = [
+
+        {cantidad: ((ancho / 2) + 0.5) * 2, precio: 11.00},
+        {cantidad: (alto - 0.4) * 2, precio: 11.00},
+        {cantidad: 4, precio: 280.00},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: ((ancho / 2) + 0.5) * 2, precio: 1.43},
+        {cantidad: (alto - 0.4) * 2, precio: 1.43},
+        {cantidad: (ancho * alto), precio: 0.03}
+
+      ];
+    }
+
+        else if (tipoVentana === "CEDAZO 1/2") {
+
+          ganancia = 120;
+
+            materiales = [
+
+        {cantidad: ((ancho / 2) + 0.5) * 2, precio: 4.41},
+        {cantidad: (alto - 0.4) * 2, precio: 4.41},
+        {cantidad: 4, precio: 280.00},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: ((ancho / 2) + 0.5) * 2, precio: 1.43},
+        {cantidad: (alto - 0.4) * 2, precio: 1.43},
+        {cantidad: (ancho * alto), precio: 0.03}
+
+      ];
+    }
+
+            else if (tipoVentana === "CEDAZO MONORIEL") {
+
+              ganancia = 110;
+
+            materiales = [
+
+        {cantidad: (ancho + (alto * 2)), precio: 24.35},
+        {cantidad: (ancho), precio: 26.78},
+        {cantidad: ((ancho / 2) + 1.1) * 2, precio: 18.97},
+        {cantidad: (alto - 4) * 2, precio: 18.97},
+        {cantidad: (alto), precio: 6.06},
+        {cantidad: 4, precio: 316.97},
+        {cantidad: 10, precio: 11.30},
+        {cantidad: 2, precio: 440.00},
+        {cantidad: ((ancho / 2) + 1.1) * 2, precio: 1.43},
+        {cantidad: (alto - 4) * 2, precio: 1.43},
+        {cantidad: (ancho * alto), precio: 0.03}
+
+      ];
+    }
+
+    else if (tipoVentana === "CEDAZO MONORIEL DOBLE") {
+
+      ganancia = 95;
+
+            materiales = [
+
+        {cantidad: (ancho + (alto * 2)), precio: 24.35},
+        {cantidad: (ancho), precio: 26.78},
+        {cantidad: ((ancho / 4) + 1.1) * 4, precio: 18.97},
+        {cantidad: (alto - 4) * 4, precio: 18.97},
+        {cantidad: (alto * 2), precio: 6.06},
+        {cantidad: (alto), precio: 13.11},
+        {cantidad: 8, precio: 316.97},
+        {cantidad: 20, precio: 11.30},
+        {cantidad: 4, precio: 440.00},
+        {cantidad: ((ancho / 2) + 1.1) * 4, precio: 1.43},
+        {cantidad: (alto - 4) * 4, precio: 1.43},
+        {cantidad: (ancho * alto), precio: 0.03}
+
+      ];
+
+    }
+    }    
+     /* ========================================================= */
+  /* 🔥 SISTEMA VENTILAS */
+  /* ========================================================= */
+
+  else if (sistemaActual === "VENTILAS") {
+
+    if (tipoVentana === "VENTILA SIMPLE") {
+
+      ganancia = 96;
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: ((ancho - 2) * 2) + ((alto - 2) * 2), precio: 27.25},
+        {cantidad: ((ancho - 2) * 2) + ((alto - 2) * 2), precio: 8.96},
+        {cantidad: 4, precio: 163.85},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: 1, precio: 2200.00},
+        {cantidad: (ancho * 8) + (alto * 8), precio: 3.02},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "VENTILA DOBLE") {
+
+          ganancia = 35;
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: (ancho), precio: 31.96},
+        {cantidad: (((ancho / 2) - 1.4) * 4) + ((alto - 1.2) * 4), precio: 27.25},
+        {cantidad: (((ancho / 2) - 1.4) * 4) + ((alto - 1.2) * 4), precio: 8.96},
+        {cantidad: 8, precio: 163.85},
+        {cantidad: 32, precio: 11.30},
+        {cantidad: 2, precio: 2197.85},
+        {cantidad: (ancho * 8) + (alto * 12), precio: 3.02},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+         else if (tipoVentana === "VENTILA TRIPLE") {
+
+          ganancia = 35;
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: (ancho * 2), precio: 31.96},
+        {cantidad: (((ancho / 3) - 0.8) * 6) + ((alto - 0.8) * 6), precio: 27.25},
+        {cantidad: (((ancho / 3) - 0.8) * 6) + ((alto - 0.8) * 6), precio: 8.96},
+        {cantidad: 12, precio: 163.85},
+        {cantidad: 48, precio: 11.30},
+        {cantidad: 3, precio: 2197.85},
+        {cantidad: (ancho * 8) + (alto * 16), precio: 3.02},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+                else if (tipoVentana === "VENTILA CUADRUPLE") {
+
+                  ganancia = 35;
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: (ancho * 3), precio: 31.96},
+        {cantidad: (((ancho / 4) - 0.6) * 8) + ((alto - 0.6) * 8), precio: 27.25},
+        {cantidad: (((ancho / 4) - 0.6) * 8) + ((alto - 0.6) * 8), precio: 8.96},
+        {cantidad: 16, precio: 163.85},
+        {cantidad: 64, precio: 11.30},
+        {cantidad: 4, precio: 2197.85},
+        {cantidad: (ancho * 8) + (alto * 20), precio: 3.02},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+    else if (tipoVentana === "VENTILA CON VIDRIO FIJO HORIZONTAL") {
+
+      ganancia = 98;
+
+       let anchoTotal = parseFloat(document.getElementById("anchoTotal").value);
+      let anchoVentila = parseFloat(document.getElementById("anchoVentila").value);
+
+    if (!anchoTotal || !anchoVentila || !alto) {
+
+    mostrarNotificacion("Ingresá ancho total, ancho de ventila y alto");
+    return;
+
+  }
+
+            materiales = [
+
+        {cantidad: (anchoTotal * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: (alto), precio: 31.96},
+        {cantidad: ((anchoVentila - 2) * 2) + ((alto - 2) * 2), precio: 27.25},
+        {cantidad: (((anchoVentila - 2) * 2) + (alto - 2) *4) + (((anchoTotal - anchoVentila) - 2) * 2), precio: 8.96},
+        {cantidad: 4, precio: 163.85},
+        {cantidad: 20, precio: 11.30},
+        {cantidad: 1, precio: 2197.85},
+        {cantidad: (anchoVentila * 8) + (alto * 8), precio: 3.02},
+        {cantidad: ((anchoTotal - anchoVentila) * 8) + (alto * 8), precio: 3.02},
+        {cantidad: (anchoVentila * alto), precio: precioVidrio},
+        {cantidad: ((anchoTotal - anchoVentila) * alto), precio: precioVidrio}
+
+      ];
+    }
+
+    else if (tipoVentana === "VENTILA CON VIDRIO FIJO VERTICAL") {
+
+      ganancia = 98;
+
+      let altoTotal = parseFloat(document.getElementById("altoTotal").value);
+      let altoVentila = parseFloat(document.getElementById("altoVentila").value);
+
+    if (!altoTotal || !altoVentila || !ancho) {
+
+    mostrarNotificacion("Ingresá alto total, alto de ventila y ancho");
+    return;
+
+  }
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (altoTotal - 3.2) * 2, precio: 22.03},
+        {cantidad: (ancho), precio: 31.96},
+        {cantidad: ((ancho - 2) * 2) + ((altoVentila - 2) * 2), precio: 27.25},
+        {cantidad: (((ancho - 2) * 4) + (altoVentila - 2) *2) + (((altoTotal - altoVentila) - 2) * 2), precio: 8.96},
+        {cantidad: 4, precio: 163.85},
+        {cantidad: 20, precio: 11.30},
+        {cantidad: 1, precio: 2197.85},
+        {cantidad: (ancho * 14) + (altoVentila * 8), precio: 3.02},
+        {cantidad: ((altoTotal - altoVentila) * 4), precio: 3.02},
+        {cantidad: (ancho * altoVentila), precio: precioVidrio},
+        {cantidad: ((altoTotal - altoVentila) * ancho), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "VENTILA DOBLE VERTICAL") {
+
+          ganancia = 57;
+
+            materiales = [
+
+        {cantidad: (ancho * 2), precio: 16.93},
+        {cantidad: (alto - 3.2) * 2, precio: 22.03},
+        {cantidad: (ancho), precio: 31.96},
+        {cantidad: (((ancho / 2) - 2) * 4) + ((alto - 2) * 4), precio: 27.25},
+        {cantidad: (((ancho / 2) - 2) * 4) + ((alto - 2) * 4), precio: 8.96},
+        {cantidad: 8, precio: 163.85},
+        {cantidad: 32, precio: 11.30},
+        {cantidad: 2, precio: 2600.85},
+        {cantidad: (ancho * 16) + (alto * 16), precio: 3.02},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+}
+
+    
+     /* ========================================================= */
+  /* 🔥 SISTEMA VIDRIOS FIJOS */
+  /* ========================================================= */
+
+else if (sistemaActual === "VIDRIOS FIJOS") {
+
+    if (tipoVentana === "VIDRIO FIJO") {
+
+      ganancia = 50;
+
+let precioPerfilFijo = parseFloat(
+    document.getElementById("perfilFijo").value
+);
+
+if (isNaN(precioPerfilFijo)) {
+    mostrarNotificacion("Debe seleccionar un perfil de aluminio.");
+    return;
+}
+
+            materiales = [
+
+        {cantidad: (ancho * 2) + (alto * 2), precio: precioPerfilFijo},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "VIDRIO FIJO CON DIVISION VERTICAL") {
+
+          ganancia = 45;
+
+let precioPerfilFijo = parseFloat(
+    document.getElementById("perfilFijo").value
+);
+
+if (isNaN(precioPerfilFijo)) {
+    mostrarNotificacion("Debe seleccionar un perfil de aluminio.");
+    return;
+}
+
+let precioDivisionFija = 25.55;
+
+if (precioPerfilFijo === 43.73) {
+    precioDivisionFija = 49.56;
+} else if (precioPerfilFijo === 52.80) {
+    precioDivisionFija = 55.20;
+}
+
+            materiales = [
+        {cantidad: (ancho * 2) + (alto * 2), precio: precioPerfilFijo},
+        {cantidad: (alto), precio: precioDivisionFija},
+        {cantidad: (ancho * 2) + (alto * 4), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+            else if (tipoVentana === "VIDRIO FIJO CON DIVISION HORIZONTAL") {
+
+              ganancia = 45;
+
+let precioPerfilFijo = parseFloat(
+    document.getElementById("perfilFijo").value
+);
+
+if (isNaN(precioPerfilFijo)) {
+    mostrarNotificacion("Debe seleccionar un perfil de aluminio.");
+    return;
+}
+
+let precioDivisionFija = 25.55;
+
+if (precioPerfilFijo === 43.73) {
+    precioDivisionFija = 49.56;
+} else if (precioPerfilFijo === 52.80) {
+    precioDivisionFija = 55.20;
+}
+
+            materiales = [
+        {cantidad: (ancho * 2) + (alto * 2), precio: precioPerfilFijo},
+        {cantidad: (ancho), precio: precioDivisionFija},
+        {cantidad: (ancho * 4) + (alto * 2), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+                else if (tipoVentana === "VIDRIO FIJO CON TUBO 1X2 COMO CARGADOR") {
+
+              ganancia = 50;
+
+            materiales = [
+        {cantidad: (ancho) + (alto * 2), precio: 13.52},
+        {cantidad: (ancho), precio: 23.92},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+}
+   
+     /* ========================================================= */
+  /* 🔥 SISTEMA PUERTAS DE BAÑO */
+  /* ========================================================= */
+
+else if (sistemaActual === "PUERTA DE BANO") {
+
+    if (tipoVentana === "PUERTA DE BANO NORMAL") {
+
+      ganancia = 34;
+
+            materiales = [
+
+        {cantidad: (ancho + 2), precio: 13.93},
+        {cantidad: (ancho + 2), precio: 40.23},
+        {cantidad: (alto - 3.9) * 2, precio: 20.07},
+        {cantidad: ((ancho / 2) + 1.7) * 2, precio: 12.55},
+        {cantidad: ((ancho / 2) + 1.7) * 2, precio: 19.66},
+        {cantidad: (alto - 5.6) * 4, precio: 14.39},
+        {cantidad: (((ancho / 2) + 1.7) - 10) * 4, precio: 8.93},
+        {cantidad: 32, precio: 29.15},
+        {cantidad: 4, precio: 299.97},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: (ancho * 4) + (alto * 4), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+        else if (tipoVentana === "PUERTA DE BANO CON PANEL") {
+
+          ganancia = 34;
+
+      let anchoPB = parseFloat(document.getElementById("anchoPB").value);
+      let anchoPanel = parseFloat(document.getElementById("anchoPanel").value);
+
+    if (!anchoPB || !anchoPanel || !alto) {
+
+    mostrarNotificacion("Ingresá Ancho Puerta de Baño, Ancho del Panel y Alto");
+    return;
+
+    }
+
+            materiales = [
+        {cantidad: (anchoPB + 7.5), precio: 13.93},
+        {cantidad: (anchoPB + 7.5), precio: 40.23},
+        {cantidad: (alto - 3.9) * 2, precio: 20.07},
+        {cantidad: ((anchoPB / 2) + 1.7) * 2, precio: 12.55},
+        {cantidad: ((anchoPB / 2) + 1.7) * 2, precio: 19.66},
+        {cantidad: (alto - 5.6) * 4, precio: 14.39},
+        {cantidad: (((anchoPB / 2) + 1.7) - 10) * 4, precio: 8.93},
+        {cantidad: (anchoPanel * 2) + (alto * 2), precio: 23.92},
+        {cantidad: (anchoPanel * 2) + (alto * 2), precio: 5.00},
+        {cantidad: 32, precio: 29.15},
+        {cantidad: 20, precio: 9.76},
+        {cantidad: 4, precio: 299.97},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: 8, precio: 11.30},
+        {cantidad: (anchoPB * 4) + (alto * 4), precio: 2.82},
+        {cantidad: (anchoPB * alto), precio: precioVidrio},
+        {cantidad: (anchoPanel * alto), precio: precioVidrio}
+
+      ];
+    }
+
+      else if (tipoVentana === "PUERTA DE BANO EN ESCUADRA") {
+
+        ganancia = 34;
+
+      let anchoPB1 = parseFloat(document.getElementById("anchoPB1").value);
+      let anchoPB2 = parseFloat(document.getElementById("anchoPB2").value);
+
+    if (!anchoPB1 || !anchoPB2 || !alto) {
+
+    mostrarNotificacion("Ingresá Ancho Puerta de Baño #1, Ancho Puerta de Baño #2 y Alto");
+    return;
+
+    }
+
+            materiales = [
+        {cantidad: (anchoPB1 + 2) + (anchoPB2 + 2), precio: 13.93},
+        {cantidad: (anchoPB1 + 2) + (anchoPB2 + 2), precio: 40.23},
+        {cantidad: (alto - 3.9) * 2, precio: 20.07},
+        {cantidad: (((anchoPB1 / 2) + 1.7) * 2) + (((anchoPB2 / 2) + 1.7) * 2), precio: 12.55},
+        {cantidad: (((anchoPB1 / 2) + 1.7) * 2) + (((anchoPB2 / 2) + 1.7) * 2), precio: 19.66},
+        {cantidad: (alto - 5.6) * 8, precio: 14.39},
+        {cantidad: (((anchoPB1 / 2) + 1.7) - 10) * 1, precio: 8.93},
+        {cantidad: (((anchoPB2 / 2) + 1.7) - 10) * 1, precio: 8.93},
+        {cantidad: 32, precio: 29.15},
+        {cantidad: 4, precio: 299.97},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: (anchoPB1 * 2) + (alto * 4), precio: 2.82},
+        {cantidad: (anchoPB2 * 2) + (alto * 4), precio: 2.82},
+        {cantidad: (anchoPB1 * alto), precio: precioVidrio},
+        {cantidad: (anchoPB2 * alto), precio: precioVidrio}
+
+      ];
+    }
+
+    }
+  
+     /* ========================================================= */
+  /* 🔥 SISTEMA PUERTA LIVIANA */
+  /* ========================================================= */
+
+else if (sistemaActual === "PUERTA LIVIANA") {
+
+    if (tipoVentana === "CEJA CORRIDA") {
+
+      ganancia = 65;
+
+            materiales = [
+
+        {cantidad: (ancho) + (alto * 2), precio: 23.92},
+        {cantidad: ((ancho - 15.8) * 2) + ((alto - 3.6) * 2), precio: 27.84},
+        {cantidad: ((ancho - 15.8) * 2) + ((alto - 3.6) * 2), precio: 5.00},
+        {cantidad: 10, precio: 11.28},
+        {cantidad: 16, precio: 11.30},
+        {cantidad: 2, precio: 2000.00},
+        {cantidad: 1, precio: 13000.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "CEJA CORRIDA CON DIVISION") {
+
+          ganancia = 80;
+
+            materiales = [
+        {cantidad: (ancho) + (alto * 2), precio: 23.92},
+        {cantidad: ((ancho - 15.8) * 3) + ((alto - 3.6) * 2), precio: 27.84},
+        {cantidad: ((ancho - 15.8) * 4) + ((alto - 3.6) * 2), precio: 5.00},
+        {cantidad: 10, precio: 11.28},
+        {cantidad: 24, precio: 11.30},
+        {cantidad: 2, precio: 2000.00},
+        {cantidad: 1, precio: 13000.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+       else if (tipoVentana === "MARCO 8040") {
+
+        ganancia = 85;
+
+            materiales = [
+        {cantidad: (ancho + 4) + ((alto * 2) + 4), precio: 23.92},
+        {cantidad: ((ancho - 5.7) * 2) + ((alto - 3.6) * 2), precio: 33.24},
+        {cantidad: 4, precio: 316.97},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: 2, precio: 2000.00},
+        {cantidad: 1, precio: 13500.00},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+     }
+    
+     /* ========================================================= */
+  /* 🔥 SISTEMA PORTON PESADO */
+  /* ========================================================= */
+
+else if (sistemaActual === "PORTON PESADO") {
+
+    if (tipoVentana === "PORTON PESADO 8040") {
+
+      ganancia = 67;
+
+            materiales = [
+
+        {cantidad: (ancho * 2) + 15, precio: 28.90},
+        {cantidad: (ancho * 2) + ((alto - 7) * 2), precio: 35.57},
+        {cantidad: (ancho * 2) + 2, precio: 30.19},
+        {cantidad: (alto + 3), precio: 23.92},
+        {cantidad: (ancho + 3) + (alto + 4), precio: 24.35},
+        {cantidad: 4, precio: 316.97},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: 2, precio: 5200.00},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+           else if (tipoVentana === "PORTON PESADO CEJA CORRIDA") {
+
+        ganancia = 67;
+
+            materiales = [
+        {cantidad: (ancho * 2) + 15, precio: 28.90},
+        {cantidad: ((ancho - 5.7) * 2) + ((alto - 3.6) * 2), precio: 27.84},
+        {cantidad: ((ancho - 5.7) * 2) + ((alto - 3.6) * 2), precio: 5.00},
+        {cantidad: (ancho * 2) + 2, precio: 30.19},
+        {cantidad: (alto + 3), precio: 23.92},
+        {cantidad: (ancho + 3) + (alto + 4), precio: 24.15},
+        {cantidad: 4, precio: 316.97},
+        {cantidad: 12, precio: 11.30},
+        {cantidad: 2, precio: 5200.00},
+        {cantidad: 1, precio: 17000.00},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+    } 
+     /* ========================================================= */
+  /* 🔥 SISTEMA ESPEJOS */
+  /* ========================================================= */
+
+else if (sistemaActual === "ESPEJOS") {
+
+    if (tipoVentana === "ESPEJO CON MARCO") {
+
+      ganancia = 90;
+
+            materiales = [
+
+        {cantidad: (alto * 2), precio: 14.39},
+        {cantidad: (ancho * 2), precio: 12.55},
+        {cantidad: 1, precio: 150.00},
+        {cantidad: 4, precio: 11.300},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "ESPEJO SIN MARCO") {
+
+          ganancia = 120;
+
+            materiales = [
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+  }
+
+
+     /* ========================================================= */
+  /* 🔥 SISTEMA PANEL */
+  /* ========================================================= */
+
+else if (sistemaActual === "PANEL") {
+
+    if (tipoVentana === "PANEL MATERIAL PB") {
+
+      ganancia = 65;
+
+            materiales = [
+
+        {cantidad: ((ancho * 2) + (alto * 2)), precio: 14.39},
+        {cantidad: 4, precio: 11.30},
+        {cantidad: (ancho * 2) + (alto * 2), precio: 2.82},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+  }
+
+       /* ========================================================= */
+  /* 🔥 SISTEMA CURVAS */
+  /* ========================================================= */
+
+else if (sistemaActual === "CURVAS") {
+
+    if (tipoVentana === "CURVA NORMAL") {
+
+      ganancia = 60;
+
+            materiales = [
+
+        {cantidad: (ancho + 50), precio: 20.17},
+        {cantidad: (ancho), precio: 23.92},
+        {cantidad: ((ancho + 50) + ancho), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+        else if (tipoVentana === "CURVA CODO") {
+
+      ganancia = 60;
+
+            materiales = [
+
+        {cantidad: ((ancho + 50) + 80), precio: 20.17},
+        {cantidad: (ancho), precio: 23.92},
+        {cantidad: (((ancho + 50) + ancho) + 80), precio: 5.00},
+        {cantidad: (ancho * alto), precio: precioVidrio}
+
+      ];
+    }
+
+  }
+
+else if (sistemaActual === "COTIZACION LIBRE") {
+
+    if (tipoVentana === "LAMINA DE VIDRIO") {
+      
+      ganancia = 95;
+    
+      materiales = [
+      {cantidad: (ancho * alto), precio: precioVidrio}
+      ];
+    }
+
+     else if (tipoVentana === "ROLLO DE CEDAZO") {
+
+          ganancia = 160;
+
+            materiales = [
+        {cantidad: (ancho * alto), precio: 0.03}
+      ];
+    }
+  }
+  /* ========================================================= */
+  /* X12 - Opciones 5020 excepto ABATIBLE: ₡13,52 por cada cm de ancho */
+  if (
+    sistemaActual === "5020" &&
+    tipoVentana !== "ABATIBLE" &&
+    document.getElementById("x12Si").checked
+  ) {
+    // En MTTM se utiliza la suma de los anchos izquierdo y derecho.
+    // En las demás opciones 5020 se utiliza el ancho general.
+    let anchoX12 = tipoVentana === "MTTM"
+      ? parseFloat(document.getElementById("anchoIzq").value) +
+        parseFloat(document.getElementById("anchoDer").value)
+      : ancho;
+
+    materiales.push({ cantidad: anchoX12, precio: 13.52 });
+  }
+
+  /* 🔥 SUMAR MATERIALES */
+  /* ========================================================= */
+
+  materiales.forEach(mat => {
+
+  let cantidad = Math.max(0, mat.cantidad);
+  costo += cantidad * mat.precio;
+
+});
+
+/* 🔥 UTILIDAD */
+let utilidad = costo * (ganancia / 100);
+
+/* 🔥 IVA */
+let subtotal = costo + utilidad;
+
+let total;
+
+if (sistemaActual === "8025") {
+  total = subtotal; // 8025 SIN IVA
+} else {
+  total = subtotal * 1.13; // Todos los demás CON IVA
+}
+
+/* 🔥 RESULTADO */
+document.getElementById("resultado").innerText =
+  "Precio Final: " +
+  total.toLocaleString("es-CR", {
+    style: "currency",
+    currency: "CRC",
+    maximumFractionDigits: 0
+  });
+}
+
+window.onload = function() {
+  limpiarCampos();
+};
+
+// MOSTRAR NOTIFICACIÓN
+function mostrarNotificacion(mensaje, titulo = "LA VIDRIERA") {
+
+    document.getElementById("tituloNotificacion").innerText = titulo;
+
+    document.getElementById("mensajeNotificacion").innerText = mensaje;
+
+    document.getElementById("iconoNotificacion").innerText = "✓";
+
+    document.getElementById("botonesNotificacion").innerHTML = `
+        <button onclick="cerrarNotificacion()">
+            ACEPTAR
+        </button>
+    `;
+
+    document.getElementById("modalNotificacion").style.display = "flex";
+
+}
+
+
+// CERRAR NOTIFICACIÓN
+function cerrarNotificacion() {
+
+    document.getElementById("modalNotificacion").style.display = "none";
+
+    document.getElementById("nombreCotizacionInput").style.display = "none";
+
+    document.getElementById("nombreCotizacionInput").value = "";
+
+}
+
+
+// NOTIFICACIÓN DE ERROR
+function mostrarError(mensaje) {
+
+    document.getElementById("tituloNotificacion").innerText = "ATENCIÓN";
+
+    document.getElementById("mensajeNotificacion").innerText = mensaje;
+
+    document.getElementById("iconoNotificacion").innerText = "!";
+
+    document.getElementById("modalNotificacion").style.display = "flex";
+
+}
+
+function mostrarConfirmacion(mensaje, accionConfirmar) {
+
+    document.getElementById("tituloNotificacion").innerText = "CONFIRMAR ACCIÓN";
+
+    document.getElementById("mensajeNotificacion").innerText = mensaje;
+
+    document.getElementById("iconoNotificacion").innerText = "?";
+
+    document.getElementById("botonesNotificacion").innerHTML = `
+        <button onclick="cerrarNotificacion()" style="background:#667785;">
+            CANCELAR
+        </button>
+
+        <button id="btnConfirmarAccion">
+            CONFIRMAR
+        </button>
+    `;
+
+    document.getElementById("modalNotificacion").style.display = "flex";
+
+    document.getElementById("btnConfirmarAccion").onclick = function() {
+
+        cerrarNotificacion();
+
+        accionConfirmar();
+
+    };
+}
+
+function solicitarNombreCotizacion(accionGuardar) {
+
+    document.getElementById("tituloNotificacion").innerText =
+        "GUARDAR COTIZACIÓN";
+
+    document.getElementById("mensajeNotificacion").innerText =
+        "Ingrese un nombre para identificar esta cotización.";
+
+    document.getElementById("iconoNotificacion").innerText = "✎";
+
+    let input = document.getElementById("nombreCotizacionInput");
+
+    input.value = "";
+    input.style.display = "block";
+
+    document.getElementById("botonesNotificacion").innerHTML = `
+        <button onclick="cerrarNotificacion()" style="background:#667785;">
+            CANCELAR
+        </button>
+
+        <button id="btnGuardarNombre">
+            GUARDAR
+        </button>
+    `;
+
+    document.getElementById("modalNotificacion").style.display = "flex";
+
+    input.focus();
+
+    document.getElementById("btnGuardarNombre").onclick = function() {
+
+        let nombre = input.value.trim();
+
+        if (nombre === "") {
+            mostrarError("Debe ingresar un nombre para la cotización.");
+            return;
+        }
+
+        cerrarNotificacion();
+
+        accionGuardar(nombre);
+
+    };
+}
+
+
+</script>
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.register("service-worker.js")
+
+    .then(() => console.log("Service Worker instalado"))
+
+    .catch(error => console.log(error));
+
+}
+
+
+</script>
+
+    <!-- FIRMA DEL DESARROLLADOR -->
+<div class="firma-desarrollador">
+
+    <strong>Desarrollado por Alex Javier Madrigal Sánchez</strong><br>
+
+    Diseño y desarrollo independiente<br>
+
+    © 2026 · La Vidriera
+
+</div>
+
+<nav class="barra-inferior">
+    <button class="nav-item activo" onclick="mostrarSeccion('inicio')">
+        <span>⌂</span>
+        <small>Inicio</small>
+    </button>
+
+    <button class="nav-item" onclick="mostrarSeccion('cotizar')">
+        <span>＋</span>
+        <small>Cotizar</small>
+    </button>
+
+    <button class="nav-item" onclick="mostrarSeccion('carrito')">
+        <span>🛒</span>
+        <small>Carrito</small>
+    </button>
+
+    <button class="nav-item" onclick="mostrarSeccion('historial')">
+        <span>▤</span>
+        <small>Historial</small>
+    </button>
+</nav>
+
+<!-- VENTANA DE NOTIFICACIONES -->
+<div id="modalNotificacion" class="modal-notificacion">
+
+    <div class="contenido-notificacion">
+
+        <div id="iconoNotificacion" class="icono-notificacion">
+            ✓
+        </div>
+
+        <h3 id="tituloNotificacion">LA VIDRIERA</h3>
+
+        <p id="mensajeNotificacion"></p>
+
+        <input
+    type="text"
+    id="nombreCotizacionInput"
+    placeholder="Nombre de la cotización"
+    style="display:none; width:100%; margin-bottom:15px;"
+>
+
+        <div id="botonesNotificacion">
+            <button onclick="cerrarNotificacion()">
+                ACEPTAR
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
